@@ -1,0 +1,473 @@
+name;acronym;parent_organization;executive_secretariat;department
+Almoxarifado Central - Muribeca;;SEDUC;;
+Agência EMPREL - Subsolo PCR;;SEDUC;;
+Conselho Municipal de Educação;CME;SEDUC;CME;
+Comissão de Verificação do Conselho Municipal de Educação;CVCME;SEDUC;CME;CVCME
+Presidencia do Conselho Municipal de Educação;PRES;SEDUC;CME;PRES
+Secretaria do Conselho Municipal de Educação;SECCME;SEDUC;CME;SECCME
+Vice Presidencia do Conselho Municipal de Educação;VICPRES;SEDUC;CME;VICPRES
+Seduc Federação;FEDERAÇÃO;SEDUC;FEDERAÇÃO;
+Fórum Municipal de Educação do Recife;FME;SEDUC;FME;
+Secretaria do Fórum Municipal de Educação do Recife;SEC;SEDUC;FME;SEC
+Gabinete;GAB;SEDUC;GAB;
+Assessoria Especial do Gabinete;AESPGAB;SEDUC;GAB;AESPGAB
+Conselho de Acompanhamento e Controle Social - Cacs Fundeb;CACSFUNDEB;SEDUC;GAB;CACSFUNDEB
+Presidencia do Conselho de Acompanhamento e Controle Social - Cacs Fundeb;PRES;SEDUC;GAB;CACSFUNDEB
+Secretaria do Conselho de Acompanhamento e Controle Social - Cacs Fundeb;SEC;SEDUC;GAB;CACSFUNDEB
+Gerência Geral do Gabinete;GGGAB;SEDUC;GAB;GGGAB
+Divisão de Apoio Administrativo do Gabinete;APOIOGAB;SEDUC;GAB;GGGAB
+Protocolo do Gabinete;PGAB;SEDUC;GAB;GGGAB
+Divisão de Apoio Governamental do Gabinete;APOIOGGAB;SEDUC;GAB;GGGAB
+Gerência de Articulação;GART;SEDUC;GAB;GGGAB
+Núcleo de Atividades Culturais;NAC;SEDUC;GAB;GGGAB
+Gerência Geral de Assuntos Jurídicos;GGAJU;SEDUC;GGAJU;
+Gerência Jurídica;GEJU1;SEDUC;GGAJU;GEJU
+Gestão de Unidade Jurídica;GEUJ;SEDUC;GGAJU;GEUJ
+Núcleo de Processo Administrativo e Sindicância;NPAS;SEDUC;GGAJU;NPAS
+Gerência Geral de Comunicação;GGC;SEDUC;GGC;
+Secretaria Executiva de Administração e Finanças;SEAF;SEDUC;SEAF;
+Conselho de Alimentação Escolar (SEDUC/SEAF/CAE);CAE;SEDUC;;
+Gerência Geral de Administração e Finanças;GGAF;SEDUC;SEAF;GGAF
+Central de Transportes;CT;SEDUC;SEAF;GGAF
+Divisão de Finanças;DIFIN;SEDUC;SEAF;GGAF
+Divisão de Terceirizados;DIT;SEDUC;SEAF;GGAF
+Gerência de Compras, Almoxarifado e Patrimônio;GCAP;SEDUC;SEAF;GGAF
+Divisão de Almoxarifado;DALM;SEDUC;SEAF;GGAF
+Setor de Patrimônio;SP;SEDUC;SEAF;GGAF
+Gerência de Compras;GCOMP;SEDUC;SEAF;GGAF
+Gerência de Logística;GLOG;SEDUC;SEAF;GGAF
+Setor de Tesouraria;SETES;SEDUC;SEAF;GGAF
+Gerência Geral de Alimentação Escolar (SEDUC/SEAF/GGEAL);GGEAL;SEDUC;;
+Gerência Geral de Gestão de Pessoas;GGGP;SEDUC;SEAF;GGGP
+Divisão de Desenvolvimento e Acompanhamento da Rede/Bilhetagem;BILHETAGEM;SEDUC;SEAF;GGGP
+Divisão de Atendimento Ao Servidor;DAS;SEDUC;SEAF;GGGP
+Divisão de Atendimento Ao Servidor - Aposentadoria;DAS-AP;SEDUC;SEAF;GGGP
+Divisão de Atendimento Ao Servidor - Estágio Probatório;DAS-PROB;SEDUC;SEAF;GGGP
+Divisão de Desenvolvimento e Acompanhamento da Rede;DDAR;SEDUC;SEAF;GGGP
+Divisão de Pessoal;DPES;SEDUC;SEAF;GGGP
+Divisão de Desenvolvimento e Acompanhamento da Rede/Protocolo;PROTOCOLO;SEDUC;SEAF;GGGP
+Governança;GOV;SEDUC;SEAF;GOV
+Gerência de Serviços Administrativos;GSAD;SEDUC;SEAF;GSAD
+Protocolo da Secretaria Executiva de Administração e Finanças;PROT;SEDUC;SEAF;PROT
+Setor de Contratos;SECON;SEDUC;SEAF;SECON
+Secretaria Executiva de Gestão Pedagógica;SEGP;SEDUC;SEGP;
+Divisão de Educação de Jovens e Adultos;DEJA;SEDUC;SEGP;DEJA
+Gabinete;GAB;SEDUC;SEGP;GAB
+Gerência de Alfabetização e Letramento, Educação Infantil e Anos Iniciais;GALEIAI;SEDUC;SEGP;GALEIAI
+Escolas Conveniadas (SEDUC/SEGP/GALEIAI/CONVENIADAS);CONVENIADAS;SEDUC;;
+Divisão de Anos Iniciais do Ensino Fundamental;DAI;SEDUC;SEGP;GALEIAI
+Divisão de Educação Infantil;DEI;SEDUC;SEGP;GALEIAI
+Gerência do Programa de Alfabetização;GALF;SEDUC;SEGP;GALF
+Gerência de Apoio Pedagógico;GEAP;SEDUC;SEGP;GEAP
+Núcleo de Coordenação Pedagógica;NCP;SEDUC;SEGP;GEAP
+Gerência de Educação Especial;GEE;SEDUC;SEGP;GEE
+Gerência de Anos Finais e Educação Integral;GEIAF;SEDUC;SEGP;GEIAF
+Divisão de Anos Finais do Ensino Fundamental;DAF;SEDUC;SEGP;GEIAF
+Gestão de Formação de Leitores e Educação Ambiental;GFLEA;SEDUC;SEGP;GFLEA
+Gerência Geral de Desenvolvimento da Educação;GGDE;SEDUC;SEGP;GGDE
+Escola de Formação de Educadores do Recife Professor Paulo Freire (SEDUC/SEGP/GGDE/EFER);EFER;SEDUC;;
+Núcleo de Avaliação do Recife;NARE;SEDUC;SEGP;GGDE
+Gerência Geral de Escolas Integrais (SEDUC/SEGP/GGEI);GGEI;SEDUC;;
+Secretaria Executiva de Gestão de Rede;SEGRE;SEDUC;SEGRE;
+Divisão de Apoio Social - UASE;DAS;SEDUC;SEGRE;DAS
+Busca Ativa Escolar (SEDUC/SEGRE/DAS/BAE);BAE;SEDUC;;
+Bolsa Escola Municipal (SEDUC/SEGRE/DAS/BEM);BEM;SEDUC;;
+Escola Que Protege (SEDUC/SEGRE/DAS/EQP);EQP;SEDUC;;
+Núcleo de Enfrentamento À Violência Escolar (SEDUC/SEGRE/DAS/NEVE);NEVE;SEDUC;;
+Programa Saúde na Escola (SEDUC/SEGRE/DAS/PSE);PSE;SEDUC;;
+Divisao de Desenvolvimento e Acompanhamento da Rede;DDAGR;SEDUC;SEGRE;DDAGR
+Divisão de Gabinete da Segre;DGAB;SEDUC;SEGRE;DGAB
+Divisão do Controle e Análise de Dados;DIVCAD;SEDUC;SEGRE;DIVCAD
+Gerência Administrativa da Rede;GADM;SEDUC;SEGRE;GADM
+Gerência Geral de Gestão de Rede;GGGR;SEDUC;SEGRE;GGGR
+Gestão Escolar (SEDUC/SEGRE/GGGR/GE);GE;SEDUC;;
+Gerência de Gestão de Rede;GGR;SEDUC;SEGRE;GGGR
+Nucleo de Normatização;NOR;SEDUC;SEGRE;GGGR
+Programa Nacional do Livro Didático;PNLD;SEDUC;SEGRE;GGGR
+Gerência Regional 1 - Centro-Norte;REG1CN;SEDUC;SEGRE;GGGR
+Setor de Gerência Regional 1 - Centro-Norte;SREG1;SEDUC;SEGRE;GGGR
+Gerência Regional 2 - Nordeste;REG2N;SEDUC;SEGRE;GGGR
+Setor de Gerência Regional 2 - Nordeste;SREG2;SEDUC;SEGRE;GGGR
+Gerência Regional 3 - Oeste-Sudoeste;REG3OS;SEDUC;SEGRE;GGGR
+Setor de Gerência Regional 3 - Oeste-Sudoeste;SREG3;SEDUC;SEGRE;GGGR
+Gerência Regional 4 - Sul;REG4S;SEDUC;SEGRE;GGGR
+Setor de Gerência Regional 4 - Sul;SREG4;SEDUC;SEGRE;GGGR
+Setor de Informação e Ordenamento da Rede;SIORE;SEDUC;SEGRE;GGGR
+Credenciamento;CRE;SEDUC;SEGRE;GGGR
+Secretaria Executiva de Infraestrutura;SEINFRA;SEDUC;SEINFRA;
+Gerência Geral de Infraestrutura;GGI;SEDUC;SEINFRA;GGI
+Gerência Geral de Obras;GGO;SEDUC;SEINFRA;GGO
+Gerência Geral de Orçamento e Licitação de Obras;GGOLO;SEDUC;SEINFRA;GGOLO
+Gerência Geral de Projetos de Infraestrutura;GGPI;SEDUC;SEINFRA;GGPI
+Protocolo da Secretaria Executiva de Infraestrutura;PROT;SEDUC;SEINFRA;PROT
+Secretária Executiva da Primeira Infância;SEPIN;SEDUC;SEPIN;
+Gerência Geral de Articulação da Primeira Infância;GGPI;SEDUC;SEPIN;GGPI
+Gestão de Monitoramento da Primeira Infância;GMPI;SEDUC;SEPIN;GGPI
+Protocolo da Secretaria Executiva da Primeira Infância;PROT;SEDUC;SEPIN;PROT
+Secretaria Executiva de Planejamento e Coordenação;SEPLAN;SEDUC;SEPLAN;
+Gerência Geral de Planejamento, Orçamento e Captação;GGPOC;SEDUC;SEPLAN;GGPOC
+Gerência de Coordenação e Monitoramento de Projetos Prioritários;GCMPP;SEDUC;SEPLAN;GGPOC
+Unidade de Gestão por Resultados;UGPR;SEDUC;SEPLAN;GGPOC
+Gerência de Planejamento Orçamentário e Captação;GPOC;SEDUC;SEPLAN;GGPOC
+Unidade de Orçamento;UNOR;SEDUC;SEPLAN;GGPOC
+Protocolo da Secretaria Executiva de Planejamento e Coordenação;PROT;SEDUC;SEPLAN;PROT
+Unidade de Monitoramento;UNMO;SEDUC;SEPLAN;UNMO
+Secretaria Executiva de Projetos, Tecnologia e Inovação;SEPTI;SEDUC;SEPTI;
+Gerência Geral de Estratégias Educacionais;GGEE;SEDUC;SEPTI;GGEE
+7 Cine;7CINE;SEDUC;SEPTI;GGEE
+Divisão de Gestão de Tecnologia em Rede;GTER;SEDUC;SEPTI;GGEE
+Gerência Geral de Tecnologia;GGTEC;SEDUC;SEPTI;GGTEC
+Gerência de Tecnologia;GTEC;SEDUC;SEPTI;GGTEC
+Divisão de Inovação na Educação;GGEE;SEDUC;SEPTI;GGEE
+Unidade Gestora de Infraestrutura de Tecnologia;UGIT;SEDUC;SEPTI;UGIT
+Núcleo de Atividades de Altas Habilidades e Superdotação;NAAHS;SEDUC;SEGP;GEE
+Secretaria Executiva de Esportes;SEE;SEDUC;SEE;
+Supervisão do Serviço de Aposentadoria e Pensões;SAP;SEPLAGTD;SEGEP;GGAPE
+Supervisão de Licença Prêmio;LP;SEPLAGTD;SEGEP;GGAPE
+Supervisão de Certidões e Declarações;CD;SEPLAGTD;SEGEP;GGAPE
+Secretaria Executiva de Inovação Urbana;SEIURB;SEINFRA;SEIURB;
+Universidade Federal Rural de Pernambuco;UFRPE;UFRPE;;
+Secretaria Executiva de Gestão Pedagógica (SEDUC/SEGP/CAP)(Escola Flutuante Águas do Capibaribe);CAP)(Escola Flutuante Águas do Capibaribe;SEDUC;;
+Escola Municipal para Aulas Digitais (EMAD);EMAD;SEDUC;;
+Programa Embarque Digital;;SEDUC;;
+Secretaria Executiva de Administração e Licitações;SEAL;SEPLAGTD;SEAL;
+SAMU Metropolitano do Recife;;SEDUC;;
+Secretaria da Mulher;SEMUL;SEMUL;;
+Secretaria de Saúde do Recife;SESAU;SESAU;;
+Gerência de Projetos Prioritários;GEPP;SEPLAGTD;SEPLAN;GEPP
+Escola Municipal Integral Alto da Guabiraba;;SEDUC;;
+Escola Municipal Alto do Maracana;;SEDUC;;
+Escola Municipal Alto do Pascoal;;SEDUC;;
+Escola Municipal Alto do Refugio Ivan Neves;;SEDUC;;
+Escola Municipal Alto Jardim Progresso;;SEDUC;;
+Escola Municipal Alto Santa Terezinha;;SEDUC;;
+Creche Municipal Ame As Criancas;;SEDUC;;
+Escola Municipal Ana Mauricia Wanderley;;SEDUC;;
+Creche Escola Ana Rosa Falcao de Carvalho;;SEDUC;;
+Escola Municipal Andre de Melo;;SEDUC;;
+Escola Municipal Anexa Casa Amarela;;SEDUC;;
+Escola Municipal Anita Paes Barreto;;SEDUC;;
+Escola Municipal Antonio Farias Filho;;SEDUC;;
+Escola Municipal Integral Antonio Heraclio do Rego;;SEDUC;;
+Escola Municipal Antonio Luiz;;SEDUC;;
+Escola Municipal Antonio Tiburcio;;SEDUC;;
+Creche Municipal Aritana;;SEDUC;;
+Escola Municipal Arquiteto Alexandre Muniz de Oliveira;;SEDUC;;
+Escola Municipal Arraial Novo do Bom Jesus;;SEDUC;;
+Escola Municipal Artista Plastico Cicero Dias;;SEDUC;;
+Escola Municipal Asa Branca;;SEDUC;;
+Creche Escola Associacao Crista Feminina;;SEDUC;;
+Escola Municipal Balbina Menelau;;SEDUC;;
+Escola Municipal Beato Eugenio Mazenod;;SEDUC;;
+Creche Escola Bernard Van Der Leer;;SEDUC;;
+Creche Municipal Bido Krause;;SEDUC;;
+Escola Municipal Boa Esperanca;;SEDUC;;
+Escola Municipal Bola na Rede;;SEDUC;;
+Creche Escola Brasilia Teimosa;;SEDUC;;
+Creche Escola Brejo do Beberibe;;SEDUC;;
+Creche Municipal Cajueiro;;SEDUC;;
+Escola Municipal Campina do Barreto;;SEDUC;;
+Escola Municipal Capela Santo Antonio;;SEDUC;;
+Escola Municipal Carlucio de Souza Castanha Junior;;SEDUC;;
+Escola Municipal Casa dos Ferroviarios;;SEDUC;;
+Escola Municipal Casarao do Barbalho;;SEDUC;;
+Creche Municipal Casinha Azul;;SEDUC;;
+Escola Municipal Cecilia Meirelles;;SEDUC;;
+Creche Escola Celeste Vidal;;SEDUC;;
+Escola Municipal Celia Arraes;;SEDUC;;
+Creche Municipal Chico Mendes;;SEDUC;;
+Escola Municipal Chico Mendes;;SEDUC;;
+Escola Municipal Chico Science;;SEDUC;;
+Escola Municipal Integral Cicero Franklin Cordeiro;;SEDUC;;
+Escola Municipal Cidadao Herbert de Souza;;SEDUC;;
+Escola Municipal Clarice Lispector;;SEDUC;;
+Creche Escola Cmei Creusa Arcoverde de Freitas Cavalcanti;;SEDUC;;
+Creche Escola Cmei Darcy Ribeiro;;SEDUC;;
+Escola Municipal Novo Pina;;SEDUC;;
+Creche Escola Coelhinho Pensante;;SEDUC;;
+Escola Municipal Compositor Capiba;;SEDUC;;
+Escola Municipal Compositor Levino Ferreira;;SEDUC;;
+Escola Municipal Corrego da Areia;;SEDUC;;
+Escola Municipal Corrego da Bica;;SEDUC;;
+Escola Municipal Corrego do Euclides;;SEDUC;;
+Creche Municipal Cristo Rei Jordao Alto;;SEDUC;;
+Creche Escola Deputado Alcides Teixeira;;SEDUC;;
+Creche Escola Recife Alto do Mandu;;SEDUC;;
+Creche Escola Recife da Estancia;;SEDUC;;
+Creche Escola Recife do Ibura;;SEDUC;;
+Creche Escola Recife Governador Miguel Arraes;;SEDUC;;
+Creche Escola Recife Miguel Arraes de Alencar;;SEDUC;;
+Creche Municipal Ceape;;SEDUC;;
+Creche Municipal Deus E Amor;;SEDUC;;
+Creche Municipal do Jordao Baixo;;SEDUC;;
+Creche Municipal Novo Horizonte;;SEDUC;;
+Escola Municipal Creusa de Freitas Cavalcanti;;SEDUC;;
+Creche Municipal Crianca Feliz;;SEDUC;;
+Escola Municipal Cristiano Cordeiro;;SEDUC;;
+Escola Municipal da Guabiraba;;SEDUC;;
+Escola Municipal da Iputinga;;SEDUC;;
+Escola Municipal Integral da Mangabeira;;SEDUC;;
+Creche Escola da Mangueira;;SEDUC;;
+Creche Municipal da Torre;;SEDUC;;
+Escola Municipal Darcy Ribeiro;;SEDUC;;
+Creche Escola de Afogados;;SEDUC;;
+Escola Municipal de Agua Fria;;SEDUC;;
+Escola Municipal de Beberibe;;SEDUC;;
+Escola Municipal de Casa Amarela;;SEDUC;;
+Escola Municipal de Dois Rios;;SEDUC;;
+Escola Municipal de Tejipio;;SEDUC;;
+Escola Municipal Deputado Edson Cantarelli;;SEDUC;;
+Escola Municipal Deputado Fernando Sampaio;;SEDUC;;
+Escola Municipal Deus e Amor;;SEDUC;;
+Escola Municipal Diacono Abel Gueiros;;SEDUC;;
+Escola Municipal Dina de Oliveira;;SEDUC;;
+Escola Municipal Integral Divino Espirito Santo;;SEDUC;;
+Escola Municipal do Barro;;SEDUC;;
+Creche Municipal do Bongi;;SEDUC;;
+Escola Municipal do Coque;;SEDUC;;
+Escola Municipal do Dom;;SEDUC;;
+Creche Escola do Iraque;;SEDUC;;
+Escola Municipal do Jordao;;SEDUC;;
+Escola Municipal do Leao;;SEDUC;;
+Escola Municipal do Pantanal;;SEDUC;;
+Creche Municipal do Pilar;;SEDUC;;
+Escola Municipal do Sancho;;SEDUC;;
+Escola Municipal Integral Dom Bosco;;SEDUC;;
+Escola Municipal Dom Helder Camara;;SEDUC;;
+Escola Municipal Dom Jose Lamartine Soares;;SEDUC;;
+Creche Escola Dona Carmelita Muniz de Araujo;;SEDUC;;
+Escola Municipal Dona Luci Silva Lima;;SEDUC;;
+Escola Municipal dos Coelhos;;SEDUC;;
+Escola Municipal dos Remedios;;SEDUC;;
+Escola Municipal dos Torroes;;SEDUC;;
+Creche Escola Doutor Alberico Dornelas Camara;;SEDUC;;
+Escola Municipal Doutor Antonio Correia;;SEDUC;;
+Escola Municipal Doutor Caete;;SEDUC;;
+Escola Municipal Doutor Ebenezer Gueiros;;SEDUC;;
+Escola Municipal Doutor Rodolfo Aureliano;;SEDUC;;
+Escola Municipal Doutor Samuel Goncalves;;SEDUC;;
+Escola Municipal Draomiro Chaves Aguiar;;SEDUC;;
+Creche Municipal E Lutando Que Se Conquista;;SEDUC;;
+Escola Municipal Edite Braga;;SEDUC;;
+Escola Municipal Educador Paulo Freire;;SEDUC;;
+Escola Municipal Engenheiro Edinaldo Miranda de Oliveira;;SEDUC;;
+Escola Municipal Engenheiro Guilherme Diniz;;SEDUC;;
+Escola Municipal Engenheiro Henoch Coutinho de Melo;;SEDUC;;
+Escola Municipal Engenheiro Umberto Gondim;;SEDUC;;
+Escola Municipal Engenho do Meio;;SEDUC;;
+Escola Municipal Escola Santa Luzia;;SEDUC;;
+Escola Municipal Escritor Josue de Castro;;SEDUC;;
+Creche Escola Esperanca;;SEDUC;;
+Creche Escola Estrela da Manha;;SEDUC;;
+Escola Municipal Fernando Santa Cruz;;SEDUC;;
+Creche Municipal Flor da Comunidade;;SEDUC;;
+Creche Municipal Flor do Bairro da Guabiraba;;SEDUC;;
+Escola Municipal Florestan Fernandes;;SEDUC;;
+Escola Municipal Frei Tadeu Glaser;;SEDUC;;
+Creche Municipal Clube de Mães Futuro do Amanhã de San Martin;;SEDUC;;
+Escola Municipal Futuro Feliz;;SEDUC;;
+Escola Municipal General Emidio Dantas Barreto;;SEDUC;;
+Escola Municipal General San Martin;;SEDUC;;
+Creche Escola Governador Eduardo Campos;;SEDUC;;
+Escola Municipal Governador Miguel Arraes de Alencar;;SEDUC;;
+Escola Municipal Henfil;;SEDUC;;
+Escola Municipal Historiador Flavio Guerra;;SEDUC;;
+Escola Municipal Hugo Gerdau;;SEDUC;;
+Escola Municipal Ibura de Baixo;;SEDUC;;
+Escola Municipal Ines Soares de Lima;;SEDUC;;
+Creche Municipal Irma Dulce;;SEDUC;;
+Escola Municipal Irma Terezinha Batista;;SEDUC;;
+Escola Municipal Isaac Pereira da Silva;;SEDUC;;
+Creche Municipal Isabel Silvana de Melo;;SEDUC;;
+Escola Municipal Jader Figueiredo de Andrade Silva;;SEDUC;;
+Escola Municipal Jardim Mauriceia;;SEDUC;;
+Escola Municipal Jardim Monte Verde;;SEDUC;;
+Escola Municipal Jardim Uchoa;;SEDUC;;
+Creche Escola Jesus de Nazare;;SEDUC;;
+Creche Escola Joao Amazonas;;SEDUC;;
+Creche Municipal Joao Eugenio;;SEDUC;;
+Escola Municipal Joao Pessoa Guerra;;SEDUC;;
+Escola Municipal Joao XXIII;;SEDUC;;
+Escola Municipal Jordao Baixo;;SEDUC;;
+Creche Escola Jose de Souza Ferraz;;SEDUC;;
+Escola Municipal Jose Mucio Monteiro;;SEDUC;;
+Escola Municipal Josefina Marinho;;SEDUC;;
+Escola Municipal Julio Vicente Alves de Araujo;;SEDUC;;
+Escola Municipal Karla Patricia;;SEDUC;;
+Escola Municipal Ladjane Bandeira;;SEDUC;;
+Escola Municipal Lagoa Encantada;;SEDUC;;
+Creche Municipal Lua Luar;;SEDUC;;
+Escola Municipal Luiz Lua Gonzaga;;SEDUC;;
+Escola Municipal Integral Luiz Vaz de Camoes;;SEDUC;;
+Escola Municipal Lutadores do Bem;;SEDUC;;
+Escola Municipal Maestro Nelson Ferreira;;SEDUC;;
+Creche Escola Maezinha do Coque;;SEDUC;;
+Escola Municipal Magalhaes Bastos;;SEDUC;;
+Escola Municipal Manoel Antonio de Freitas;;SEDUC;;
+Escola Municipal Manoel Rolim;;SEDUC;;
+Creche Municipal Mardonio Coelho;;SEDUC;;
+Escola Municipal Marechal Rondon;;SEDUC;;
+Escola Municipal Margarida de Siqueira Pessoa;;SEDUC;;
+Escola Municipal Margarida Serpa Cossart;;SEDUC;;
+Escola Municipal Maria Adelaide de Barros;;SEDUC;;
+Escola Municipal Integral Maria de Sampaio Lucena;;SEDUC;;
+Creche Escola Maria Luzinete da Costa;;SEDUC;;
+Escola Municipal Mario Melo;;SEDUC;;
+Escola Municipal Marluce Santiago da Silva;;SEDUC;;
+Creche Escola Mauriceia da Silva Dias;;SEDUC;;
+Escola Municipal Mauricio de Nassau;;SEDUC;;
+Escola Municipal Menino Jesus;;SEDUC;;
+Creche Municipal Menino Jesus da Bomba Grande;;SEDUC;;
+Creche Escola Menino Jesus de Casa Forte;;SEDUC;;
+Escola Municipal Mercia de Albuquerque Ferreira;;SEDUC;;
+Creche Escola Mercia Maria Bezerra Costa;;SEDUC;;
+Creche Escola Miguel Arraes Roda de Fogo;;SEDUC;;
+Escola Municipal Milton Almeida dos Santos;;SEDUC;;
+Escola Municipal Monsenhor Viana;;SEDUC;;
+Creche Municipal Monte das Oliveiras;;SEDUC;;
+Escola Municipal Integral Monteiro Lobato;;SEDUC;;
+Escola Municipal Mundo Esperanca;;SEDUC;;
+Escola Municipal Integral Nadir Colaco;;SEDUC;;
+Creche Municipal Nossa Senhora Auxiliadora;;SEDUC;;
+Escola Municipal Nossa Senhora da Penha;;SEDUC;;
+Creche Escola Nossa Senhora das Dores;;SEDUC;;
+Creche Municipal Nossa Senhora de Fatima;;SEDUC;;
+Escola Municipal Integral Nossa Senhora do Pilar;;SEDUC;;
+Creche Escola Nosso Senhor Jesus do Bonfim;;SEDUC;;
+Escola Municipal Nova Aurora;;SEDUC;;
+Escola Municipal Nova Descoberta;;SEDUC;;
+Escola Municipal Nova Morada;;SEDUC;;
+Escola Municipal Novo Horizonte;;SEDUC;;
+Escola Municipal Novo Mangue;;SEDUC;;
+Creche Escola CMEI Novo Pina;;SEDUC;;
+Escola Municipal Octavio de Meira Lins;;SEDUC;;
+Escola Municipal Olindina Monteiro de Oliveira Franca;;SEDUC;;
+Escola Municipal Oswaldo Lima Filho;;SEDUC;;
+Escola Municipal Padre Antonio Henrique;;SEDUC;;
+Escola Municipal Padre Donino;;SEDUC;;
+Escola Municipal Padre Jose de Anchieta;;SEDUC;;
+Escola Municipal Padre Jose Mathias Delgado;;SEDUC;;
+Creche Municipal Padre Lourenco;;SEDUC;;
+Escola Municipal Pais e Filhos;;SEDUC;;
+Escola Municipal Papa Joao XXIII;;SEDUC;;
+Escola Municipal Paroquial Cristo Rei;;SEDUC;;
+Escola Municipal Parque dos Milagres;;SEDUC;;
+Escola Municipal Pastor Jose Munguba Sobrinho;;SEDUC;;
+Escola Municipal Pastor Paulo Leivas Macalao;;SEDUC;;
+Escola Municipal Integral Paulo VI;;SEDUC;;
+Escola Municipal Paz e Amor;;SEDUC;;
+Escola Municipal Pedrinho;;SEDUC;;
+Escola Municipal Pedro Alcantara;;SEDUC;;
+Escola Municipal Integral Pedro Augusto;;SEDUC;;
+Escola Municipal Pintor Lula Cardoso Ayres;;SEDUC;;
+Escola Municipal Poeta Carlos Pena Filho;;SEDUC;;
+Escola Municipal Poeta Joao Cabral de Melo Neto;;SEDUC;;
+Escola Municipal Poeta Joaquim Cardoso;;SEDUC;;
+Escola Municipal Poeta Jonatas Braga;;SEDUC;;
+Escola Municipal Poeta Paulo Bandeira da Cruz;;SEDUC;;
+Escola Municipal Poeta Solano Trindade;;SEDUC;;
+Creche Escola Porto Digital do Recife;;SEDUC;;
+Escola Municipal Presbitero Jose Bezerra;;SEDUC;;
+Creche Escola Presidente Tancredo Neves;;SEDUC;;
+Escola Municipal Prof Elizabeth Sales Coutinho Barros;;SEDUC;;
+Escola Municipal Prof Jandira Botelho Pereira da Costa;;SEDUC;;
+Escola Municipal Prof Jose Lourenco de Lima;;SEDUC;;
+Escola Municipal Professor Adauto Pontes;;SEDUC;;
+Escola Municipal Professor Aderbal Galvao;;SEDUC;;
+Escola Municipal Professor Antonio de Brito Alves;;SEDUC;;
+Creche Escola Professor Ariano Vilar Suassuna;;SEDUC;;
+Escola Municipal Professor Enaldo Manoel de Souza;;SEDUC;;
+Creche Municipal Professor Francisco do Amaral Lopes;;SEDUC;;
+Escola Municipal Integral Professor Joao Batista Lippo Neto;;SEDUC;;
+Escola Municipal Professor Joao Francisco de Souza;;SEDUC;;
+Escola Municipal Integral Professor Jose da Costa Porto;;SEDUC;;
+Escola Municipal Professor Jose Soares da Silva;;SEDUC;;
+Escola Municipal Professor Josue de Castro;;SEDUC;;
+Escola Municipal Professor Julio de Oliveira;;SEDUC;;
+Escola Municipal Professor Manoel Torres;;SEDUC;;
+Escola Municipal Professor Mauro Mota;;SEDUC;;
+Escola Municipal Professor Moacyr de Albuquerque;;SEDUC;;
+Escola Municipal Integral Professor Nilo Pereira;;SEDUC;;
+Escola Municipal Professor Orlando Parahym;;SEDUC;;
+Creche Escola Professor Paulo Rosas;;SEDUC;;
+Escola Municipal Professor Potiguar Matos;;SEDUC;;
+Escola Municipal Professor Ricardo Gama;;SEDUC;;
+Escola Municipal Professor Simoes Barbosa;;SEDUC;;
+Escola Municipal Professor Solano Magalhaes;;SEDUC;;
+Escola Municipal Professora Almerinda Umbelino de Barros;;SEDUC;;
+Escola Municipal Professora Helia Maria Pereira;;SEDUC;;
+Escola Municipal Professora Maria da Paz Brandao Alves;;SEDUC;;
+Escola Municipal Professora Primitiva de Barros Silva;;SEDUC;;
+Escola Municipal Professora Sonia Maria de Araujo Souza;;SEDUC;;
+Creche Municipal Recife 2000;;SEDUC;;
+Escola Municipal Integral Reitor Joao Alfredo;;SEDUC;;
+Escola Municipal Renato Accioly Carneiro Campos;;SEDUC;;
+Creche Municipal Roda de Fogo;;SEDUC;;
+Creche Municipal Rosa Selvagem;;SEDUC;;
+Escola Municipal Rozemar de Macedo Lima;;SEDUC;;
+Creche Escola Salete Matias Borges;;SEDUC;;
+Escola Municipal Santa Cecilia;;SEDUC;;
+Escola Municipal Santa Edwiges;;SEDUC;;
+Creche Escola Santa Luzia;;SEDUC;;
+Escola Municipal Santa Maria;;SEDUC;;
+Escola Municipal Santa Maria Goretti;;SEDUC;;
+Escola Municipal Santo Amaro;;SEDUC;;
+Escola Municipal Santo Antonio do Cacote;;SEDUC;;
+Escola Municipal Sao Cristovao;;SEDUC;;
+Escola Municipal Sao Domingos;;SEDUC;;
+Creche Municipal Sao Domingos Savio;;SEDUC;;
+Escola Municipal Sao Francisco de Assis;;SEDUC;;
+Creche Municipal Sao Joao;;SEDUC;;
+Escola Municipal Sao Joao Batista;;SEDUC;;
+Escola Municipal Sede da Sabedoria;;SEDUC;;
+Escola Municipal Integral Hospitalar Semear;;SEDUC;;
+Creche Escola Sementinha do Skylab;;SEDUC;;
+Escola Municipal Senador Jose Ermirio de Moraes;;SEDUC;;
+Creche Municipal Senador Paulo Guerra;;SEDUC;;
+Creche Escola Sergio Loreto;;SEDUC;;
+Escola Municipal Serra da Prata;;SEDUC;;
+Escola Municipal Servico Social de Belem;;SEDUC;;
+Escola Municipal Severina Bernadete Teixeira;;SEDUC;;
+Escola Municipal Severina Lira;;SEDUC;;
+Escola Municipal Sitio do Berardo;;SEDUC;;
+Creche Escola Sitio do Cardoso;;SEDUC;;
+Escola Municipal Sitio do Ceu;;SEDUC;;
+Creche Municipal Sitio Grande;;SEDUC;;
+Escola Municipal Sociologo Gilberto Freyre;;SEDUC;;
+Escola Municipal Soldado Jose Antonio do Nascimento;;SEDUC;;
+Creche Municipal Sonho de Crianca;;SEDUC;;
+Creche Municipal Sonho do Povo;;SEDUC;;
+Creche Municipal Tia Emilia;;SEDUC;;
+Creche Escola Tia Madalena;;SEDUC;;
+Escola Municipal Tres Carneiros;;SEDUC;;
+Creche Municipal Unidos Venceremos;;SEDUC;;
+Escola Municipal UR 05;;SEDUC;;
+Creche Municipal Vila dos Milagres;;SEDUC;;
+Creche Municipal Vila Imperial;;SEDUC;;
+Escola Municipal Vila Operaria do Recife;;SEDUC;;
+Escola Municipal Vila Santa Luzia;;SEDUC;;
+Escola Municipal Vila Sao Miguel;;SEDUC;;
+Escola Municipal Vila Sesamo;;SEDUC;;
+Creche Municipal Vinde a Mim as Criancinhas;;SEDUC;;
+Escola Municipal Virgem Poderosa;;SEDUC;;
+Creche Municipal Vovo Artur;;SEDUC;;
+Creche Municipal Waldemar de Souza Cabral;;SEDUC;;
+Escola Municipal Waldemar Valente;;SEDUC;;
+Creche Municipal Waldir Savluschinske;;SEDUC;;
+Creche Municipal Zacarias do Rego Maciel;;SEDUC;;
+Creche Municipal Zilda Arns;;SEDUC;;
+Escola Municipal Zumbi dos Palmares;;SEDUC;;
+UTEC Coque;;SEDUC;;
+UTEC Jornalista Cristiano Donato;;SEDUC;;
+UTEC Santo Amaro;;SEDUC;;
+UTEC Alto Santa Terezinha;;SEDUC;;
+UTEC Nova Descoberta;;SEDUC;;
+UTEC Largo Dom Luís;;SEDUC;;
+UTEC Sítio da Trindade;;SEDUC;;
+UTEC Caxangá;;SEDUC;;
+UTEC Cordeiro;;SEDUC;;
+UTEC Gregório Bezerra;;SEDUC;;
+UTEC Jardim Botânico;;SEDUC;;
+UTEC Boa Viagem;;SEDUC;;
+UTEC Geraldão;;SEDUC;;
+UTEC Ibura;;SEDUC;;

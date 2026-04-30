@@ -1,0 +1,6 @@
+"id","sku","item_type_id","brand","model","description","serial_number","patrimonio_number","unit_of_measure","status","current_sector_id","acquisition_date","warranty_end_date","notes","created_at","updated_at"
+2,"DEL001IT002",2,"Dell","Latitude 7421","Notebook corporativo de alta performance.","SN-DELL-7420-001","REC-EDU-0001","unidade","available",2,"2023-01-15","2026-01-15","Ativo adquirido no lote 2023/01.","2025-06-30 17:05:31.502169-03","2025-07-01 14:24:12.746429-03"
+3,"HPX001IT003",3,"HP","ProBook G8","Notebook corporativo","SN-HP-001","REC-0002","unidade","available",NULL,"1969-12-31","1969-12-31","Uso interno","2025-06-30 17:36:48.296179-03","2025-07-01 14:19:21.916621-03"
+4,"SAM001IT002",2,"Samsung","Odyssey G5","Monitor gamer","SN-SAM-002","REC-0003","unidade","available",NULL,"1969-12-31","1969-12-31","Sala de aula","2025-06-30 17:36:48.301731-03","2025-06-30 17:36:48.301731-03"
+5,"POS001IT005",5,"Positivo","T2040C","Tablet Positivo com capa protetora e película","343hkjhk4","222222","Unidade","available",2,"2024-07-01","2027-07-01",NULL,"2025-07-01 15:30:35.080835-03","2025-07-01 15:30:35.080835-03"
+12,"VAI001IT003",3,"VAIO","F15","Notebook corporativo","SN-SAM-009","REC-0010","unidade","available",NULL,"1969-12-31","1969-12-31",NULL,"2025-07-01 15:42:54.001556-03","2025-07-01 15:42:54.001556-03"

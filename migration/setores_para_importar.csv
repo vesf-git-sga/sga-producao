@@ -1,0 +1,474 @@
+type,name,acronym,parent_organization,executive_secretariat,department
+ADMINISTRATIVO,"Almoxarifado Central - Muribeca",,SEDUC,,
+ADMINISTRATIVO,"Agência EMPREL - Subsolo PCR",,SEDUC,,
+ADMINISTRATIVO,"Conselho Municipal de Educação",CME,SEDUC,CME,
+ADMINISTRATIVO,"Comissão de Verificação do Conselho Municipal de Educação",CVCME,SEDUC,CME,CVCME
+ADMINISTRATIVO,"Presidencia do Conselho Municipal de Educação",PRES,SEDUC,CME,PRES
+ADMINISTRATIVO,"Secretaria do Conselho Municipal de Educação",SECCME,SEDUC,CME,SECCME
+ADMINISTRATIVO,"Vice Presidencia do Conselho Municipal de Educação",VICPRES,SEDUC,CME,VICPRES
+ADMINISTRATIVO,"Seduc Federação",FEDERAÇÃO,SEDUC,FEDERAÇÃO,
+ADMINISTRATIVO,"Fórum Municipal de Educação do Recife",FME,SEDUC,FME,
+ADMINISTRATIVO,"Secretaria do Fórum Municipal de Educação do Recife",SEC,SEDUC,FME,SEC
+ADMINISTRATIVO,"Gabinete",GAB,SEDUC,GAB,
+ADMINISTRATIVO,"Assessoria Especial do Gabinete",AESPGAB,SEDUC,GAB,AESPGAB
+ADMINISTRATIVO,"Conselho de Acompanhamento e Controle Social - Cacs Fundeb",CACSFUNDEB,SEDUC,GAB,CACSFUNDEB
+ADMINISTRATIVO,"Presidencia do Conselho de Acompanhamento e Controle Social - Cacs Fundeb",PRES,SEDUC,GAB,CACSFUNDEB
+ADMINISTRATIVO,"Secretaria do Conselho de Acompanhamento e Controle Social - Cacs Fundeb",SEC,SEDUC,GAB,CACSFUNDEB
+ADMINISTRATIVO,"Gerência Geral do Gabinete",GGGAB,SEDUC,GAB,GGGAB
+ADMINISTRATIVO,"Divisão de Apoio Administrativo do Gabinete",APOIOGAB,SEDUC,GAB,GGGAB
+ADMINISTRATIVO,"Protocolo do Gabinete",PGAB,SEDUC,GAB,GGGAB
+ADMINISTRATIVO,"Divisão de Apoio Governamental do Gabinete",APOIOGGAB,SEDUC,GAB,GGGAB
+ADMINISTRATIVO,"Gerência de Articulação",GART,SEDUC,GAB,GGGAB
+ADMINISTRATIVO,"Núcleo de Atividades Culturais",NAC,SEDUC,GAB,GGGAB
+ADMINISTRATIVO,"Gerência Geral de Assuntos Jurídicos",GGAJU,SEDUC,GGAJU,
+ADMINISTRATIVO,"Gerência Jurídica 1",GEJU1,SEDUC,GGAJU,GEJU1
+ADMINISTRATIVO,"Gerência Jurídica 2",GEJU2,SEDUC,GGAJU,GEJU2
+ADMINISTRATIVO,"Gestão de Unidade Jurídica",GEUJ,SEDUC,GGAJU,GEUJ
+ADMINISTRATIVO,"Núcleo de Processo Administrativo e Sindicância",NPAS,SEDUC,GGAJU,NPAS
+ADMINISTRATIVO,"Gerência Geral de Comunicação",GGC,SEDUC,GGC,
+ADMINISTRATIVO,"Secretaria Executiva de Administração e Finanças",SEAF,SEDUC,SEAF,
+ESCOLAR,"Conselho de Alimentação Escolar (SEDUC/SEAF/CAE)",,SEDUC,,
+ADMINISTRATIVO,"Gerência Geral de Administração e Finanças",GGAF,SEDUC,SEAF,GGAF
+ADMINISTRATIVO,"Central de Transportes",CT,SEDUC,SEAF,GGAF
+ADMINISTRATIVO,"Divisão de Finanças",DIFIN,SEDUC,SEAF,GGAF
+ADMINISTRATIVO,"Divisão de Terceirizados",DIT,SEDUC,SEAF,GGAF
+ADMINISTRATIVO,"Gerência de Compras, Almoxarifado e Patrimônio",GCAP,SEDUC,SEAF,GGAF
+ADMINISTRATIVO,"Divisão de Almoxarifado",DALM,SEDUC,SEAF,GGAF
+ADMINISTRATIVO,"Setor de Patrimônio",SP,SEDUC,SEAF,GGAF
+ADMINISTRATIVO,"Gerência de Compras",GCOMP,SEDUC,SEAF,GGAF
+ADMINISTRATIVO,"Gerência de Logística",GLOG,SEDUC,SEAF,GGAF
+ADMINISTRATIVO,"Setor de Tesouraria",SETES,SEDUC,SEAF,GGAF
+ESCOLAR,"Gerência Geral de Alimentação Escolar (SEDUC/SEAF/GGEAL)",,SEDUC,,
+ADMINISTRATIVO,"Gerência Geral de Gestão de Pessoas",GGGP,SEDUC,SEAF,GGGP
+ADMINISTRATIVO,"Divisão de Desenvolvimento e Acompanhamento da Rede/Bilhetagem",BILHETAGEM,SEDUC,SEAF,GGGP
+ADMINISTRATIVO,"Divisão de Atendimento Ao Servidor",DAS,SEDUC,SEAF,GGGP
+ADMINISTRATIVO,"Divisão de Atendimento Ao Servidor - Aposentadoria",DAS-AP,SEDUC,SEAF,GGGP
+ADMINISTRATIVO,"Divisão de Atendimento Ao Servidor - Estágio Probatório",DAS-PROB,SEDUC,SEAF,GGGP
+ADMINISTRATIVO,"Divisão de Desenvolvimento e Acompanhamento da Rede",DDAR,SEDUC,SEAF,GGGP
+ADMINISTRATIVO,"Divisão de Pessoal",DPES,SEDUC,SEAF,GGGP
+ADMINISTRATIVO,"Divisão de Desenvolvimento e Acompanhamento da Rede/Protocolo",PROTOCOLO,SEDUC,SEAF,GGGP
+ADMINISTRATIVO,"Governança",GOV,SEDUC,SEAF,GOV
+ADMINISTRATIVO,"Gerência de Serviços Administrativos",GSAD,SEDUC,SEAF,GSAD
+ADMINISTRATIVO,"Protocolo da Secretaria Executiva de Administração e Finanças",PROT,SEDUC,SEAF,PROT
+ADMINISTRATIVO,"Setor de Contratos",SECON,SEDUC,SEAF,SECON
+ADMINISTRATIVO,"Secretaria Executiva de Gestão Pedagógica",SEGP,SEDUC,SEGP,
+ADMINISTRATIVO,"Divisão de Educação de Jovens e Adultos",DEJA,SEDUC,SEGP,DEJA
+ADMINISTRATIVO,"Gabinete",GAB,SEDUC,SEGP,GAB
+ADMINISTRATIVO,"Gerência de Alfabetização e Letramento, Educação Infantil e Anos Iniciais",GALEIAI,SEDUC,SEGP,GALEIAI
+ESCOLAR,"Escolas Conveniadas (SEDUC/SEGP/GALEIAI/CONVENIADAS)",,SEDUC,,
+ADMINISTRATIVO,"Divisão de Anos Iniciais do Ensino Fundamental",DAI,SEDUC,SEGP,GALEIAI
+ADMINISTRATIVO,"Divisão de Educação Infantil",DEI,SEDUC,SEGP,GALEIAI
+ADMINISTRATIVO,"Gerência do Programa de Alfabetização",GALF,SEDUC,SEGP,GALF
+ADMINISTRATIVO,"Gerência de Apoio Pedagógico",GEAP,SEDUC,SEGP,GEAP
+ADMINISTRATIVO,"Núcleo de Coordenação Pedagógica",NCP,SEDUC,SEGP,GEAP
+ADMINISTRATIVO,"Gerência de Educação Especial",GEE,SEDUC,SEGP,GEE
+ADMINISTRATIVO,"Gerência de Anos Finais e Educação Integral",GEIAF,SEDUC,SEGP,GEIAF
+ADMINISTRATIVO,"Divisão de Anos Finais do Ensino Fundamental",DAF,SEDUC,SEGP,GEIAF
+ADMINISTRATIVO,"Gestão de Formação de Leitores e Educação Ambiental",GFLEA,SEDUC,SEGP,GFLEA
+ADMINISTRATIVO,"Gerência Geral de Desenvolvimento da Educação",GGDE,SEDUC,SEGP,GGDE
+ESCOLAR,"Escola de Formação de Educadores do Recife Professor Paulo Freire (SEDUC/SEGP/GGDE/EFER)",,SEDUC,,
+ADMINISTRATIVO,"Núcleo de Avaliação do Recife",NARE,SEDUC,SEGP,GGDE
+ESCOLAR,"Gerência Geral de Escolas Integrais (SEDUC/SEGP/GGEI)",,SEDUC,,
+ADMINISTRATIVO,"Secretaria Executiva de Gestão de Rede",SEGRE,SEDUC,SEGRE,
+ADMINISTRATIVO,"Divisão de Apoio Social - UASE",DAS,SEDUC,SEGRE,DAS
+ESCOLAR,"Busca Ativa Escolar (SEDUC/SEGRE/DAS/BAE)",,SEDUC,,
+ESCOLAR,"Bolsa Escola Municipal (SEDUC/SEGRE/DAS/BEM)",,SEDUC,,
+ESCOLAR,"Escola Que Protege (SEDUC/SEGRE/DAS/EQP)",,SEDUC,,
+ESCOLAR,"Núcleo de Enfrentamento À Violência Escolar (SEDUC/SEGRE/DAS/NEVE)",,SEDUC,,
+ESCOLAR,"Programa Saúde na Escola (SEDUC/SEGRE/DAS/PSE)",,SEDUC,,
+ADMINISTRATIVO,"Divisao de Desenvolvimento e Acompanhamento da Rede",DDAGR,SEDUC,SEGRE,DDAGR
+ADMINISTRATIVO,"Divisão de Gabinete da Segre",DGAB,SEDUC,SEGRE,DGAB
+ADMINISTRATIVO,"Divisão do Controle e Análise de Dados",DIVCAD,SEDUC,SEGRE,DIVCAD
+ADMINISTRATIVO,"Gerência Administrativa da Rede",GADM,SEDUC,SEGRE,GADM
+ADMINISTRATIVO,"Gerência Geral de Gestão de Rede",GGGR,SEDUC,SEGRE,GGGR
+ESCOLAR,"Gestão Escolar (SEDUC/SEGRE/GGGR/GE)",,SEDUC,,
+ADMINISTRATIVO,"Gerência de Gestão de Rede",GGR,SEDUC,SEGRE,GGGR
+ADMINISTRATIVO,"Nucleo de Normatização",NOR,SEDUC,SEGRE,GGGR
+ADMINISTRATIVO,"Programa Nacional do Livro Didático",PNLD,SEDUC,SEGRE,GGGR
+ADMINISTRATIVO,"Gerência Regional 1 - Centro-Norte",REG1CN,SEDUC,SEGRE,GGGR
+ADMINISTRATIVO,"Setor de Gerência Regional 1 - Centro-Norte",SREG1,SEDUC,SEGRE,GGGR
+ADMINISTRATIVO,"Gerência Regional 2 - Nordeste",REG2N,SEDUC,SEGRE,GGGR
+ADMINISTRATIVO,"Setor de Gerência Regional 2 - Nordeste",SREG2,SEDUC,SEGRE,GGGR
+ADMINISTRATIVO,"Gerência Regional 3 - Oeste-Sudoeste",REG3OS,SEDUC,SEGRE,GGGR
+ADMINISTRATIVO,"Setor de Gerência Regional 3 - Oeste-Sudoeste",SREG3,SEDUC,SEGRE,GGGR
+ADMINISTRATIVO,"Gerência Regional 4 - Sul",REG4S,SEDUC,SEGRE,GGGR
+ADMINISTRATIVO,"Setor de Gerência Regional 4 - Sul",SREG4,SEDUC,SEGRE,GGGR
+ADMINISTRATIVO,"Setor de Informação e Ordenamento da Rede",SIORE,SEDUC,SEGRE,GGGR
+ADMINISTRATIVO,"Credenciamento",CRE,SEDUC,SEGRE,GGGR
+ADMINISTRATIVO,"Secretaria Executiva de Infraestrutura",SEINFRA,SEDUC,SEINFRA,
+ADMINISTRATIVO,"Gerência Geral de Infraestrutura",GGI,SEDUC,SEINFRA,GGI
+ADMINISTRATIVO,"Gerência Geral de Obras",GGO,SEDUC,SEINFRA,GGO
+ADMINISTRATIVO,"Gerência Geral de Orçamento e Licitação de Obras",GGOLO,SEDUC,SEINFRA,GGOLO
+ADMINISTRATIVO,"Gerência Geral de Projetos de Infraestrutura",GGPI,SEDUC,SEINFRA,GGPI
+ADMINISTRATIVO,"Protocolo da Secretaria Executiva de Infraestrutura",PROT,SEDUC,SEINFRA,PROT
+ADMINISTRATIVO,"Secretária Executiva da Primeira Infância",SEPIN,SEDUC,SEPIN,
+ADMINISTRATIVO,"Gerência Geral de Articulação da Primeira Infância",GGPI,SEDUC,SEPIN,GGPI
+ADMINISTRATIVO,"Gestão de Monitoramento da Primeira Infância",GMPI,SEDUC,SEPIN,GGPI
+ADMINISTRATIVO,"Protocolo da Secretaria Executiva da Primeira Infância",PROT,SEDUC,SEPIN,PROT
+ADMINISTRATIVO,"Secretaria Executiva de Planejamento e Coordenação",SEPLAN,SEDUC,SEPLAN,
+ADMINISTRATIVO,"Gerência Geral de Planejamento, Orçamento e Captação",GGPOC,SEDUC,SEPLAN,GGPOC
+ADMINISTRATIVO,"Gerência de Coordenação e Monitoramento de Projetos Prioritários",GCMPP,SEDUC,SEPLAN,GGPOC
+ADMINISTRATIVO,"Unidade de Gestão por Resultados",UGPR,SEDUC,SEPLAN,GGPOC
+ADMINISTRATIVO,"Gerência de Planejamento Orçamentário e Captação",GPOC,SEDUC,SEPLAN,GGPOC
+ADMINISTRATIVO,"Unidade de Orçamento",UNOR,SEDUC,SEPLAN,GGPOC
+ADMINISTRATIVO,"Protocolo da Secretaria Executiva de Planejamento e Coordenação",PROT,SEDUC,SEPLAN,PROT
+ADMINISTRATIVO,"Unidade de Monitoramento",UNMO,SEDUC,SEPLAN,UNMO
+ADMINISTRATIVO,"Secretaria Executiva de Projetos, Tecnologia e Inovação",SEPTI,SEDUC,SEPTI,
+ADMINISTRATIVO,"Gerência Geral de Estratégias Educacionais",GGEE,SEDUC,SEPTI,GGEE
+ADMINISTRATIVO,"7 Cine",7CINE,SEDUC,SEPTI,GGEE
+ADMINISTRATIVO,"Divisão de Gestão de Tecnologia em Rede",GTER,SEDUC,SEPTI,GGEE
+ADMINISTRATIVO,"Gerência Geral de Tecnologia",GGTEC,SEDUC,SEPTI,GGTEC
+ADMINISTRATIVO,"Gerência de Tecnologia",GTEC,SEDUC,SEPTI,GGTEC
+ADMINISTRATIVO,"Divisão de Inovação na Educação",GGEE,SEDUC,SEPTI,GGEE
+ADMINISTRATIVO,"Unidade Gestora de Infraestrutura de Tecnologia",UGIT,SEDUC,SEPTI,UGIT
+ADMINISTRATIVO,"Núcleo de Atividades de Altas Habilidades e Superdotação",NAAHS,SEDUC,SEGP,GEE
+ADMINISTRATIVO,"Secretaria Executiva de Esportes",SEE,SEDUC,SEE,
+ADMINISTRATIVO,"Supervisão do Serviço de Aposentadoria e Pensões",SAP,SEPLAGTD,SEGEP,GGAPE
+ADMINISTRATIVO,"Supervisão de Licença Prêmio",LP,SEPLAGTD,SEGEP,GGAPE
+ADMINISTRATIVO,"Supervisão de Certidões e Declarações",CD,SEPLAGTD,SEGEP,GGAPE
+ADMINISTRATIVO,"Secretaria Executiva de Inovação Urbana",SEIURB,SEINFRA,SEIURB,
+ADMINISTRATIVO,"Universidade Federal Rural de Pernambuco",UFRPE,UFRPE,,
+ESCOLAR,"Secretaria Executiva de Gestão Pedagógica (SEDUC/SEGP/CAP)(Escola Flutuante Águas do Capibaribe)",,SEDUC,,
+ESCOLAR,"Escola Municipal para Aulas Digitais (EMAD)",,SEDUC,,
+ADMINISTRATIVO,"Programa Embarque Digital",,SEDUC,,
+ADMINISTRATIVO,"Secretaria Executiva de Administração e Licitações",SEAL,SEPLAGTD,SEAL,
+ADMINISTRATIVO,"SAMU Metropolitano do Recife",,SEDUC,,
+ADMINISTRATIVO,"Secretaria da Mulher",SEMUL,SEMUL,,
+ADMINISTRATIVO,"Secretaria de Saúde do Recife",SESAU,SESAU,,
+ADMINISTRATIVO,"Gerência de Projetos Prioritários",GEPP,SEPLAGTD,SEPLAN,GEPP
+ESCOLAR,"Escola Municipal Integral Alto da Guabiraba",,SEDUC,,
+ESCOLAR,"Escola Municipal Alto do Maracana",,SEDUC,,
+ESCOLAR,"Escola Municipal Alto do Pascoal",,SEDUC,,
+ESCOLAR,"Escola Municipal Alto do Refugio Ivan Neves",,SEDUC,,
+ESCOLAR,"Escola Municipal Alto Jardim Progresso",,SEDUC,,
+ESCOLAR,"Escola Municipal Alto Santa Terezinha",,SEDUC,,
+ESCOLAR,"Creche Municipal Ame As Criancas",,SEDUC,,
+ESCOLAR,"Escola Municipal Ana Mauricia Wanderley",,SEDUC,,
+ESCOLAR,"Creche Escola Ana Rosa Falcao de Carvalho",,SEDUC,,
+ESCOLAR,"Escola Municipal Andre de Melo",,SEDUC,,
+ESCOLAR,"Escola Municipal Anexa Casa Amarela",,SEDUC,,
+ESCOLAR,"Escola Municipal Anita Paes Barreto",,SEDUC,,
+ESCOLAR,"Escola Municipal Antonio Farias Filho",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Antonio Heraclio do Rego",,SEDUC,,
+ESCOLAR,"Escola Municipal Antonio Luiz",,SEDUC,,
+ESCOLAR,"Escola Municipal Antonio Tiburcio",,SEDUC,,
+ESCOLAR,"Creche Municipal Aritana",,SEDUC,,
+ESCOLAR,"Escola Municipal Arquiteto Alexandre Muniz de Oliveira",,SEDUC,,
+ESCOLAR,"Escola Municipal Arraial Novo do Bom Jesus",,SEDUC,,
+ESCOLAR,"Escola Municipal Artista Plastico Cicero Dias",,SEDUC,,
+ESCOLAR,"Escola Municipal Asa Branca",,SEDUC,,
+ESCOLAR,"Creche Escola Associacao Crista Feminina",,SEDUC,,
+ESCOLAR,"Escola Municipal Balbina Menelau",,SEDUC,,
+ESCOLAR,"Escola Municipal Beato Eugenio Mazenod",,SEDUC,,
+ESCOLAR,"Creche Escola Bernard Van Der Leer",,SEDUC,,
+ESCOLAR,"Creche Municipal Bido Krause",,SEDUC,,
+ESCOLAR,"Escola Municipal Boa Esperanca",,SEDUC,,
+ESCOLAR,"Escola Municipal Bola na Rede",,SEDUC,,
+ESCOLAR,"Creche Escola Brasilia Teimosa",,SEDUC,,
+ESCOLAR,"Creche Escola Brejo do Beberibe",,SEDUC,,
+ESCOLAR,"Creche Municipal Cajueiro",,SEDUC,,
+ESCOLAR,"Escola Municipal Campina do Barreto",,SEDUC,,
+ESCOLAR,"Escola Municipal Capela Santo Antonio",,SEDUC,,
+ESCOLAR,"Escola Municipal Carlucio de Souza Castanha Junior",,SEDUC,,
+ESCOLAR,"Escola Municipal Casa dos Ferroviarios",,SEDUC,,
+ESCOLAR,"Escola Municipal Casarao do Barbalho",,SEDUC,,
+ESCOLAR,"Creche Municipal Casinha Azul",,SEDUC,,
+ESCOLAR,"Escola Municipal Cecilia Meirelles",,SEDUC,,
+ESCOLAR,"Creche Escola Celeste Vidal",,SEDUC,,
+ESCOLAR,"Escola Municipal Celia Arraes",,SEDUC,,
+ESCOLAR,"Creche Municipal Chico Mendes",,SEDUC,,
+ESCOLAR,"Escola Municipal Chico Mendes",,SEDUC,,
+ESCOLAR,"Escola Municipal Chico Science",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Cicero Franklin Cordeiro",,SEDUC,,
+ESCOLAR,"Escola Municipal Cidadao Herbert de Souza",,SEDUC,,
+ESCOLAR,"Escola Municipal Clarice Lispector",,SEDUC,,
+ESCOLAR,"Creche Escola Cmei Creusa Arcoverde de Freitas Cavalcanti",,SEDUC,,
+ESCOLAR,"Creche Escola Cmei Darcy Ribeiro",,SEDUC,,
+ESCOLAR,"Escola Municipal Novo Pina",,SEDUC,,
+ESCOLAR,"Creche Escola Coelhinho Pensante",,SEDUC,,
+ESCOLAR,"Escola Municipal Compositor Capiba",,SEDUC,,
+ESCOLAR,"Escola Municipal Compositor Levino Ferreira",,SEDUC,,
+ESCOLAR,"Escola Municipal Corrego da Areia",,SEDUC,,
+ESCOLAR,"Escola Municipal Corrego da Bica",,SEDUC,,
+ESCOLAR,"Escola Municipal Corrego do Euclides",,SEDUC,,
+ESCOLAR,"Creche Municipal Cristo Rei Jordao Alto",,SEDUC,,
+ESCOLAR,"Creche Escola Deputado Alcides Teixeira",,SEDUC,,
+ESCOLAR,"Creche Escola Recife Alto do Mandu",,SEDUC,,
+ESCOLAR,"Creche Escola Recife da Estancia",,SEDUC,,
+ESCOLAR,"Creche Escola Recife do Ibura",,SEDUC,,
+ESCOLAR,"Creche Escola Recife Governador Miguel Arraes",,SEDUC,,
+ESCOLAR,"Creche Escola Recife Miguel Arraes de Alencar",,SEDUC,,
+ESCOLAR,"Creche Municipal Ceape",,SEDUC,,
+ESCOLAR,"Creche Municipal Deus E Amor",,SEDUC,,
+ESCOLAR,"Creche Municipal do Jordao Baixo",,SEDUC,,
+ESCOLAR,"Creche Municipal Novo Horizonte",,SEDUC,,
+ESCOLAR,"Escola Municipal Creusa de Freitas Cavalcanti",,SEDUC,,
+ESCOLAR,"Creche Municipal Crianca Feliz",,SEDUC,,
+ESCOLAR,"Escola Municipal Cristiano Cordeiro",,SEDUC,,
+ESCOLAR,"Escola Municipal da Guabiraba",,SEDUC,,
+ESCOLAR,"Escola Municipal da Iputinga",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral da Mangabeira",,SEDUC,,
+ESCOLAR,"Creche Escola da Mangueira",,SEDUC,,
+ESCOLAR,"Creche Municipal da Torre",,SEDUC,,
+ESCOLAR,"Escola Municipal Darcy Ribeiro",,SEDUC,,
+ESCOLAR,"Creche Escola de Afogados",,SEDUC,,
+ESCOLAR,"Escola Municipal de Agua Fria",,SEDUC,,
+ESCOLAR,"Escola Municipal de Beberibe",,SEDUC,,
+ESCOLAR,"Escola Municipal de Casa Amarela",,SEDUC,,
+ESCOLAR,"Escola Municipal de Dois Rios",,SEDUC,,
+ESCOLAR,"Escola Municipal de Tejipio",,SEDUC,,
+ESCOLAR,"Escola Municipal Deputado Edson Cantarelli",,SEDUC,,
+ESCOLAR,"Escola Municipal Deputado Fernando Sampaio",,SEDUC,,
+ESCOLAR,"Escola Municipal Deus e Amor",,SEDUC,,
+ESCOLAR,"Escola Municipal Diacono Abel Gueiros",,SEDUC,,
+ESCOLAR,"Escola Municipal Dina de Oliveira",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Divino Espirito Santo",,SEDUC,,
+ESCOLAR,"Escola Municipal do Barro",,SEDUC,,
+ESCOLAR,"Creche Municipal do Bongi",,SEDUC,,
+ESCOLAR,"Escola Municipal do Coque",,SEDUC,,
+ESCOLAR,"Escola Municipal do Dom",,SEDUC,,
+ESCOLAR,"Creche Escola do Iraque",,SEDUC,,
+ESCOLAR,"Escola Municipal do Jordao",,SEDUC,,
+ESCOLAR,"Escola Municipal do Leao",,SEDUC,,
+ESCOLAR,"Escola Municipal do Pantanal",,SEDUC,,
+ESCOLAR,"Creche Municipal do Pilar",,SEDUC,,
+ESCOLAR,"Escola Municipal do Sancho",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Dom Bosco",,SEDUC,,
+ESCOLAR,"Escola Municipal Dom Helder Camara",,SEDUC,,
+ESCOLAR,"Escola Municipal Dom Jose Lamartine Soares",,SEDUC,,
+ESCOLAR,"Creche Escola Dona Carmelita Muniz de Araujo",,SEDUC,,
+ESCOLAR,"Escola Municipal Dona Luci Silva Lima",,SEDUC,,
+ESCOLAR,"Escola Municipal dos Coelhos",,SEDUC,,
+ESCOLAR,"Escola Municipal dos Remedios",,SEDUC,,
+ESCOLAR,"Escola Municipal dos Torroes",,SEDUC,,
+ESCOLAR,"Creche Escola Doutor Alberico Dornelas Camara",,SEDUC,,
+ESCOLAR,"Escola Municipal Doutor Antonio Correia",,SEDUC,,
+ESCOLAR,"Escola Municipal Doutor Caete",,SEDUC,,
+ESCOLAR,"Escola Municipal Doutor Ebenezer Gueiros",,SEDUC,,
+ESCOLAR,"Escola Municipal Doutor Rodolfo Aureliano",,SEDUC,,
+ESCOLAR,"Escola Municipal Doutor Samuel Goncalves",,SEDUC,,
+ESCOLAR,"Escola Municipal Draomiro Chaves Aguiar",,SEDUC,,
+ESCOLAR,"Creche Municipal E Lutando Que Se Conquista",,SEDUC,,
+ESCOLAR,"Escola Municipal Edite Braga",,SEDUC,,
+ESCOLAR,"Escola Municipal Educador Paulo Freire",,SEDUC,,
+ESCOLAR,"Escola Municipal Engenheiro Edinaldo Miranda de Oliveira",,SEDUC,,
+ESCOLAR,"Escola Municipal Engenheiro Guilherme Diniz",,SEDUC,,
+ESCOLAR,"Escola Municipal Engenheiro Henoch Coutinho de Melo",,SEDUC,,
+ESCOLAR,"Escola Municipal Engenheiro Umberto Gondim",,SEDUC,,
+ESCOLAR,"Escola Municipal Engenho do Meio",,SEDUC,,
+ESCOLAR,"Escola Municipal Escola Santa Luzia",,SEDUC,,
+ESCOLAR,"Escola Municipal Escritor Josue de Castro",,SEDUC,,
+ESCOLAR,"Creche Escola Esperanca",,SEDUC,,
+ESCOLAR,"Creche Escola Estrela da Manha",,SEDUC,,
+ESCOLAR,"Escola Municipal Fernando Santa Cruz",,SEDUC,,
+ESCOLAR,"Creche Municipal Flor da Comunidade",,SEDUC,,
+ESCOLAR,"Creche Municipal Flor do Bairro da Guabiraba",,SEDUC,,
+ESCOLAR,"Escola Municipal Florestan Fernandes",,SEDUC,,
+ESCOLAR,"Escola Municipal Frei Tadeu Glaser",,SEDUC,,
+ESCOLAR,"Creche Municipal Clube de Mães Futuro do Amanhã de San Martin",,SEDUC,,
+ESCOLAR,"Escola Municipal Futuro Feliz",,SEDUC,,
+ESCOLAR,"Escola Municipal General Emidio Dantas Barreto",,SEDUC,,
+ESCOLAR,"Escola Municipal General San Martin",,SEDUC,,
+ESCOLAR,"Creche Escola Governador Eduardo Campos",,SEDUC,,
+ESCOLAR,"Escola Municipal Governador Miguel Arraes de Alencar",,SEDUC,,
+ESCOLAR,"Escola Municipal Henfil",,SEDUC,,
+ESCOLAR,"Escola Municipal Historiador Flavio Guerra",,SEDUC,,
+ESCOLAR,"Escola Municipal Hugo Gerdau",,SEDUC,,
+ESCOLAR,"Escola Municipal Ibura de Baixo",,SEDUC,,
+ESCOLAR,"Escola Municipal Ines Soares de Lima",,SEDUC,,
+ESCOLAR,"Creche Municipal Irma Dulce",,SEDUC,,
+ESCOLAR,"Escola Municipal Irma Terezinha Batista",,SEDUC,,
+ESCOLAR,"Escola Municipal Isaac Pereira da Silva",,SEDUC,,
+ESCOLAR,"Creche Municipal Isabel Silvana de Melo",,SEDUC,,
+ESCOLAR,"Escola Municipal Jader Figueiredo de Andrade Silva",,SEDUC,,
+ESCOLAR,"Escola Municipal Jardim Mauriceia",,SEDUC,,
+ESCOLAR,"Escola Municipal Jardim Monte Verde",,SEDUC,,
+ESCOLAR,"Escola Municipal Jardim Uchoa",,SEDUC,,
+ESCOLAR,"Creche Escola Jesus de Nazare",,SEDUC,,
+ESCOLAR,"Creche Escola Joao Amazonas",,SEDUC,,
+ESCOLAR,"Creche Municipal Joao Eugenio",,SEDUC,,
+ESCOLAR,"Escola Municipal Joao Pessoa Guerra",,SEDUC,,
+ESCOLAR,"Escola Municipal Joao XXIII",,SEDUC,,
+ESCOLAR,"Escola Municipal Jordao Baixo",,SEDUC,,
+ESCOLAR,"Creche Escola Jose de Souza Ferraz",,SEDUC,,
+ESCOLAR,"Escola Municipal Jose Mucio Monteiro",,SEDUC,,
+ESCOLAR,"Escola Municipal Josefina Marinho",,SEDUC,,
+ESCOLAR,"Escola Municipal Julio Vicente Alves de Araujo",,SEDUC,,
+ESCOLAR,"Escola Municipal Karla Patricia",,SEDUC,,
+ESCOLAR,"Escola Municipal Ladjane Bandeira",,SEDUC,,
+ESCOLAR,"Escola Municipal Lagoa Encantada",,SEDUC,,
+ESCOLAR,"Creche Municipal Lua Luar",,SEDUC,,
+ESCOLAR,"Escola Municipal Luiz Lua Gonzaga",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Luiz Vaz de Camoes",,SEDUC,,
+ESCOLAR,"Escola Municipal Lutadores do Bem",,SEDUC,,
+ESCOLAR,"Escola Municipal Maestro Nelson Ferreira",,SEDUC,,
+ESCOLAR,"Creche Escola Maezinha do Coque",,SEDUC,,
+ESCOLAR,"Escola Municipal Magalhaes Bastos",,SEDUC,,
+ESCOLAR,"Escola Municipal Manoel Antonio de Freitas",,SEDUC,,
+ESCOLAR,"Escola Municipal Manoel Rolim",,SEDUC,,
+ESCOLAR,"Creche Municipal Mardonio Coelho",,SEDUC,,
+ESCOLAR,"Escola Municipal Marechal Rondon",,SEDUC,,
+ESCOLAR,"Escola Municipal Margarida de Siqueira Pessoa",,SEDUC,,
+ESCOLAR,"Escola Municipal Margarida Serpa Cossart",,SEDUC,,
+ESCOLAR,"Escola Municipal Maria Adelaide de Barros",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Maria de Sampaio Lucena",,SEDUC,,
+ESCOLAR,"Creche Escola Maria Luzinete da Costa",,SEDUC,,
+ESCOLAR,"Escola Municipal Mario Melo",,SEDUC,,
+ESCOLAR,"Escola Municipal Marluce Santiago da Silva",,SEDUC,,
+ESCOLAR,"Creche Escola Mauriceia da Silva Dias",,SEDUC,,
+ESCOLAR,"Escola Municipal Mauricio de Nassau",,SEDUC,,
+ESCOLAR,"Escola Municipal Menino Jesus",,SEDUC,,
+ESCOLAR,"Creche Municipal Menino Jesus da Bomba Grande",,SEDUC,,
+ESCOLAR,"Creche Escola Menino Jesus de Casa Forte",,SEDUC,,
+ESCOLAR,"Escola Municipal Mercia de Albuquerque Ferreira",,SEDUC,,
+ESCOLAR,"Creche Escola Mercia Maria Bezerra Costa",,SEDUC,,
+ESCOLAR,"Creche Escola Miguel Arraes Roda de Fogo",,SEDUC,,
+ESCOLAR,"Escola Municipal Milton Almeida dos Santos",,SEDUC,,
+ESCOLAR,"Escola Municipal Monsenhor Viana",,SEDUC,,
+ESCOLAR,"Creche Municipal Monte das Oliveiras",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Monteiro Lobato",,SEDUC,,
+ESCOLAR,"Escola Municipal Mundo Esperanca",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Nadir Colaco",,SEDUC,,
+ESCOLAR,"Creche Municipal Nossa Senhora Auxiliadora",,SEDUC,,
+ESCOLAR,"Escola Municipal Nossa Senhora da Penha",,SEDUC,,
+ESCOLAR,"Creche Escola Nossa Senhora das Dores",,SEDUC,,
+ESCOLAR,"Creche Municipal Nossa Senhora de Fatima",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Nossa Senhora do Pilar",,SEDUC,,
+ESCOLAR,"Creche Escola Nosso Senhor Jesus do Bonfim",,SEDUC,,
+ESCOLAR,"Escola Municipal Nova Aurora",,SEDUC,,
+ESCOLAR,"Escola Municipal Nova Descoberta",,SEDUC,,
+ESCOLAR,"Escola Municipal Nova Morada",,SEDUC,,
+ESCOLAR,"Escola Municipal Novo Horizonte",,SEDUC,,
+ESCOLAR,"Escola Municipal Novo Mangue",,SEDUC,,
+ESCOLAR,"Creche Escola CMEI Novo Pina",,SEDUC,,
+ESCOLAR,"Escola Municipal Octavio de Meira Lins",,SEDUC,,
+ESCOLAR,"Escola Municipal Olindina Monteiro de Oliveira Franca",,SEDUC,,
+ESCOLAR,"Escola Municipal Oswaldo Lima Filho",,SEDUC,,
+ESCOLAR,"Escola Municipal Padre Antonio Henrique",,SEDUC,,
+ESCOLAR,"Escola Municipal Padre Donino",,SEDUC,,
+ESCOLAR,"Escola Municipal Padre Jose de Anchieta",,SEDUC,,
+ESCOLAR,"Escola Municipal Padre Jose Mathias Delgado",,SEDUC,,
+ESCOLAR,"Creche Municipal Padre Lourenco",,SEDUC,,
+ESCOLAR,"Escola Municipal Pais e Filhos",,SEDUC,,
+ESCOLAR,"Escola Municipal Papa Joao XXIII",,SEDUC,,
+ESCOLAR,"Escola Municipal Paroquial Cristo Rei",,SEDUC,,
+ESCOLAR,"Escola Municipal Parque dos Milagres",,SEDUC,,
+ESCOLAR,"Escola Municipal Pastor Jose Munguba Sobrinho",,SEDUC,,
+ESCOLAR,"Escola Municipal Pastor Paulo Leivas Macalao",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Paulo VI",,SEDUC,,
+ESCOLAR,"Escola Municipal Paz e Amor",,SEDUC,,
+ESCOLAR,"Escola Municipal Pedrinho",,SEDUC,,
+ESCOLAR,"Escola Municipal Pedro Alcantara",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Pedro Augusto",,SEDUC,,
+ESCOLAR,"Escola Municipal Pintor Lula Cardoso Ayres",,SEDUC,,
+ESCOLAR,"Escola Municipal Poeta Carlos Pena Filho",,SEDUC,,
+ESCOLAR,"Escola Municipal Poeta Joao Cabral de Melo Neto",,SEDUC,,
+ESCOLAR,"Escola Municipal Poeta Joaquim Cardoso",,SEDUC,,
+ESCOLAR,"Escola Municipal Poeta Jonatas Braga",,SEDUC,,
+ESCOLAR,"Escola Municipal Poeta Paulo Bandeira da Cruz",,SEDUC,,
+ESCOLAR,"Escola Municipal Poeta Solano Trindade",,SEDUC,,
+ESCOLAR,"Creche Escola Porto Digital do Recife",,SEDUC,,
+ESCOLAR,"Escola Municipal Presbitero Jose Bezerra",,SEDUC,,
+ESCOLAR,"Creche Escola Presidente Tancredo Neves",,SEDUC,,
+ESCOLAR,"Escola Municipal Prof Elizabeth Sales Coutinho Barros",,SEDUC,,
+ESCOLAR,"Escola Municipal Prof Jandira Botelho Pereira da Costa",,SEDUC,,
+ESCOLAR,"Escola Municipal Prof Jose Lourenco de Lima",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Adauto Pontes",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Aderbal Galvao",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Antonio de Brito Alves",,SEDUC,,
+ESCOLAR,"Creche Escola Professor Ariano Vilar Suassuna",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Enaldo Manoel de Souza",,SEDUC,,
+ESCOLAR,"Creche Municipal Professor Francisco do Amaral Lopes",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Professor Joao Batista Lippo Neto",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Joao Francisco de Souza",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Professor Jose da Costa Porto",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Jose Soares da Silva",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Josue de Castro",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Julio de Oliveira",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Manoel Torres",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Mauro Mota",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Moacyr de Albuquerque",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Professor Nilo Pereira",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Orlando Parahym",,SEDUC,,
+ESCOLAR,"Creche Escola Professor Paulo Rosas",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Potiguar Matos",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Ricardo Gama",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Simoes Barbosa",,SEDUC,,
+ESCOLAR,"Escola Municipal Professor Solano Magalhaes",,SEDUC,,
+ESCOLAR,"Escola Municipal Professora Almerinda Umbelino de Barros",,SEDUC,,
+ESCOLAR,"Escola Municipal Professora Helia Maria Pereira",,SEDUC,,
+ESCOLAR,"Escola Municipal Professora Maria da Paz Brandao Alves",,SEDUC,,
+ESCOLAR,"Escola Municipal Professora Primitiva de Barros Silva",,SEDUC,,
+ESCOLAR,"Escola Municipal Professora Sonia Maria de Araujo Souza",,SEDUC,,
+ESCOLAR,"Creche Municipal Recife 2000",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Reitor Joao Alfredo",,SEDUC,,
+ESCOLAR,"Escola Municipal Renato Accioly Carneiro Campos",,SEDUC,,
+ESCOLAR,"Creche Municipal Roda de Fogo",,SEDUC,,
+ESCOLAR,"Creche Municipal Rosa Selvagem",,SEDUC,,
+ESCOLAR,"Escola Municipal Rozemar de Macedo Lima",,SEDUC,,
+ESCOLAR,"Creche Escola Salete Matias Borges",,SEDUC,,
+ESCOLAR,"Escola Municipal Santa Cecilia",,SEDUC,,
+ESCOLAR,"Escola Municipal Santa Edwiges",,SEDUC,,
+ESCOLAR,"Creche Escola Santa Luzia",,SEDUC,,
+ESCOLAR,"Escola Municipal Santa Maria",,SEDUC,,
+ESCOLAR,"Escola Municipal Santa Maria Goretti",,SEDUC,,
+ESCOLAR,"Escola Municipal Santo Amaro",,SEDUC,,
+ESCOLAR,"Escola Municipal Santo Antonio do Cacote",,SEDUC,,
+ESCOLAR,"Escola Municipal Sao Cristovao",,SEDUC,,
+ESCOLAR,"Escola Municipal Sao Domingos",,SEDUC,,
+ESCOLAR,"Creche Municipal Sao Domingos Savio",,SEDUC,,
+ESCOLAR,"Escola Municipal Sao Francisco de Assis",,SEDUC,,
+ESCOLAR,"Creche Municipal Sao Joao",,SEDUC,,
+ESCOLAR,"Escola Municipal Sao Joao Batista",,SEDUC,,
+ESCOLAR,"Escola Municipal Sede da Sabedoria",,SEDUC,,
+ESCOLAR,"Escola Municipal Integral Hospitalar Semear",,SEDUC,,
+ESCOLAR,"Creche Escola Sementinha do Skylab",,SEDUC,,
+ESCOLAR,"Escola Municipal Senador Jose Ermirio de Moraes",,SEDUC,,
+ESCOLAR,"Creche Municipal Senador Paulo Guerra",,SEDUC,,
+ESCOLAR,"Creche Escola Sergio Loreto",,SEDUC,,
+ESCOLAR,"Escola Municipal Serra da Prata",,SEDUC,,
+ESCOLAR,"Escola Municipal Servico Social de Belem",,SEDUC,,
+ESCOLAR,"Escola Municipal Severina Bernadete Teixeira",,SEDUC,,
+ESCOLAR,"Escola Municipal Severina Lira",,SEDUC,,
+ESCOLAR,"Escola Municipal Sitio do Berardo",,SEDUC,,
+ESCOLAR,"Creche Escola Sitio do Cardoso",,SEDUC,,
+ESCOLAR,"Escola Municipal Sitio do Ceu",,SEDUC,,
+ESCOLAR,"Creche Municipal Sitio Grande",,SEDUC,,
+ESCOLAR,"Escola Municipal Sociologo Gilberto Freyre",,SEDUC,,
+ESCOLAR,"Escola Municipal Soldado Jose Antonio do Nascimento",,SEDUC,,
+ESCOLAR,"Creche Municipal Sonho de Crianca",,SEDUC,,
+ESCOLAR,"Creche Municipal Sonho do Povo",,SEDUC,,
+ESCOLAR,"Creche Municipal Tia Emilia",,SEDUC,,
+ESCOLAR,"Creche Escola Tia Madalena",,SEDUC,,
+ESCOLAR,"Escola Municipal Tres Carneiros",,SEDUC,,
+ESCOLAR,"Creche Municipal Unidos Venceremos",,SEDUC,,
+ESCOLAR,"Escola Municipal UR 05",,SEDUC,,
+ESCOLAR,"Creche Municipal Vila dos Milagres",,SEDUC,,
+ESCOLAR,"Creche Municipal Vila Imperial",,SEDUC,,
+ESCOLAR,"Escola Municipal Vila Operaria do Recife",,SEDUC,,
+ESCOLAR,"Escola Municipal Vila Santa Luzia",,SEDUC,,
+ESCOLAR,"Escola Municipal Vila Sao Miguel",,SEDUC,,
+ESCOLAR,"Escola Municipal Vila Sesamo",,SEDUC,,
+ESCOLAR,"Creche Municipal Vinde a Mim as Criancinhas",,SEDUC,,
+ESCOLAR,"Escola Municipal Virgem Poderosa",,SEDUC,,
+ESCOLAR,"Creche Municipal Vovo Artur",,SEDUC,,
+ESCOLAR,"Creche Municipal Waldemar de Souza Cabral",,SEDUC,,
+ESCOLAR,"Escola Municipal Waldemar Valente",,SEDUC,,
+ESCOLAR,"Creche Municipal Waldir Savluschinske",,SEDUC,,
+ESCOLAR,"Creche Municipal Zacarias do Rego Maciel",,SEDUC,,
+ESCOLAR,"Creche Municipal Zilda Arns",,SEDUC,,
+ESCOLAR,"Escola Municipal Zumbi dos Palmares",,SEDUC,,
+ESCOLAR,"UTEC Coque",,SEDUC,,
+ESCOLAR,"UTEC Jornalista Cristiano Donato",,SEDUC,,
+ESCOLAR,"UTEC Santo Amaro",,SEDUC,,
+ESCOLAR,"UTEC Alto Santa Terezinha",,SEDUC,,
+ESCOLAR,"UTEC Nova Descoberta",,SEDUC,,
+ESCOLAR,"UTEC Largo Dom Luís",,SEDUC,,
+ESCOLAR,"UTEC Sítio da Trindade",,SEDUC,,
+ESCOLAR,"UTEC Caxangá",,SEDUC,,
+ESCOLAR,"UTEC Cordeiro",,SEDUC,,
+ESCOLAR,"UTEC Gregório Bezerra",,SEDUC,,
+ESCOLAR,"UTEC Jardim Botânico",,SEDUC,,
+ESCOLAR,"UTEC Boa Viagem",,SEDUC,,
+ESCOLAR,"UTEC Geraldão",,SEDUC,,
+ESCOLAR,"UTEC Ibura",,SEDUC,,

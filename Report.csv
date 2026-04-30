@@ -1,0 +1,4 @@
+id;asset_id;requester_user_id;status;reason;details;evidence_path;approver_user_id;approval_date;rejection_reason;created_at;updated_at
+1;38;16;rejected;Dano Irreparável;Equipamento sem reparo;C:\Users\EDUCAÇÃO\Documents\sga-project\backend\src\uploads\evidence\evidencia_ativo38_1754930609946.pdf;1;2025-08-11 13:49:21.3251-03;Reavaliar descarte;2025-08-11 13:43:30.118998-03;2025-08-11 13:43:30.118998-03
+3;20;16;pending;Dano Irreparável;Equipamento danificado;C:\Users\EDUCAÇÃO\Documents\sga-project\backend\src\uploads\evidence\evidencia_ativo20_1755545755147.pdf;;;;2025-08-18 16:35:55.245529-03;2025-08-18 16:35:55.245529-03
+2;1;16;rejected;Extravio/Furto;nhfjhvchgc;C:\Users\EDUCAÇÃO\Documents\sga-project\backend\src\uploads\evidence\evidencia_ativo1_1754937385697.pdf;1;2025-08-18 16:36:41.882295-03;O equipamento está em funcionamento;2025-08-11 15:36:25.968918-03;2025-08-11 15:36:25.968918-03
