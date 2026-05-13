@@ -3976,13 +3976,17 @@ app.post('/api/assets/validate-for-movement', authenticateToken, async (req, res
   }
 });
 
-// Atualizar Ativo (Ajustado: Removida chamada inexistente de generateSku)
+// Atualizar Ativo (ATUALIZADO COM DADOS COMPLEMENTARES)
 app.put('/api/assets/:id', authenticateToken, authorizeRole(['admin', 'manager']), async (req, res) => {
   const { id } = req.params;
-  const { item_type_id, brand, model, description, serial_number, patrimonio_number, unit_of_measure, status, current_unit_id, acquisition_date, warranty_end_date, notes } = req.body;
+  const { 
+      item_type_id, brand, model, description, serial_number, patrimonio_number, 
+      unit_of_measure, status, current_unit_id, acquisition_date, warranty_end_date, notes,
+      // >>> NOVOS CAMPOS AQUI <<<
+      imei, sim_card_number, box_number, has_livox, allow_automation
+  } = req.body;
   const ipAddress = req.ip;
 
-  // Validação básica (MANTIDA)
   if (!item_type_id || !brand || !model || !status) {
     return res.status(400).json({ message: 'Tipo de Item, Marca, Modelo e Status são obrigatórios.' });
   }
@@ -3993,9 +3997,6 @@ app.put('/api/assets/:id', authenticateToken, authorizeRole(['admin', 'manager']
       return res.status(404).json({ message: 'Ativo não encontrado para atualização.' });
     }
     const oldAsset = oldAssetResult.rows[0];
-
-    // >>> CORREÇÃO AQUI <<<
-    // O SKU é mantido o original. Removemos a lógica de recálculo que causaria erro.
     const sku = oldAsset.sku;
 
     const updatedAsset = await pool.query(
@@ -4003,9 +4004,18 @@ app.put('/api/assets/:id', authenticateToken, authorizeRole(['admin', 'manager']
          sku = $1, item_type_id = $2, brand = $3, model = $4, description = $5,
          serial_number = $6, patrimonio_number = $7, unit_of_measure = $8, status = $9,
          current_unit_id = $10, acquisition_date = $11, warranty_end_date = $12, notes = $13,
+         imei = $14, sim_card_number = $15, box_number = $16, has_livox = $17, allow_automation = $18,
          updated_at = CURRENT_TIMESTAMP
-       WHERE id = $14 RETURNING *`,
-      [sku, item_type_id, brand, model, description, serial_number, patrimonio_number, unit_of_measure, status, current_unit_id, acquisition_date, warranty_end_date, notes, id]
+       WHERE id = $19 RETURNING *`,
+      [
+          sku, item_type_id, brand, model, description, 
+          serial_number, patrimonio_number, unit_of_measure, status, 
+          current_unit_id, acquisition_date, warranty_end_date, notes,
+          imei || null, sim_card_number || null, box_number || null, 
+          has_livox !== undefined ? has_livox : oldAsset.has_livox, 
+          allow_automation !== undefined ? allow_automation : oldAsset.allow_automation, 
+          id
+      ]
     );
 
     await logAudit(req.user.id, 'update_asset', 'asset', id, { old_data: oldAsset, new_data: updatedAsset.rows[0] }, ipAddress);

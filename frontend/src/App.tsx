@@ -218,7 +218,7 @@ export interface Unit {
   current_assets_count?: number;
 }
 
-// Interface para Ativos (ATUALIZADA com campos para consulta)
+// Interface para Ativos (ATUALIZADA com dados logísticos complementares)
 export interface Asset {
   id: number;
   sku: string;
@@ -230,12 +230,18 @@ export interface Asset {
   patrimonio_number?: string;
   unit_of_measure?: string;
   status: string;
-  current_unit_id?: number; // Renomeado
+  current_unit_id?: number;
   acquisition_date?: string;
   warranty_end_date?: string;
   notes?: string;
   item_type_name: string;
-  current_unit_name?: string; // Renomeado
+  current_unit_name?: string;
+  // >>> NOVOS CAMPOS ADICIONADOS PARA TABLETS <<<
+  imei?: string;
+  sim_card_number?: string;
+  box_number?: string;
+  has_livox?: boolean;
+  allow_automation?: boolean;
 }
 
 // Interface para Pessoas
@@ -1977,7 +1983,7 @@ console.log('%c[App.tsx] Renderizando. O valor ATUAL de substitutionOldAssetId �
                     <table className="w-full text-sm text-left text-gray-500">
                       <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
-                          <th scope="col" className="px-6 py-3">Patrimônio</th>
+                          <th scope="col" className="px-6 py-3">Patrimônio / Nº Série</th>
                           <th scope="col" className="px-6 py-3">Tipo</th>
                           <th scope="col" className="px-6 py-3">Marca / Modelo</th>
                           <th scope="col" className="px-6 py-3">Status</th>
@@ -2012,8 +2018,13 @@ console.log('%c[App.tsx] Renderizando. O valor ATUAL de substitutionOldAssetId �
                           })
                           .map((asset: Asset) => (
                           <tr key={asset.id} className="bg-white border-b hover:bg-gray-50">
-                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                              {asset.patrimonio_number || 'N/A'}
+                            <th scope="row" className="px-6 py-4 whitespace-nowrap">
+                              <div className="font-bold text-gray-900 text-sm">
+                                  {asset.patrimonio_number || 'Sem Tombo'}
+                              </div>
+                              <div className="text-xs text-gray-500 font-mono mt-0.5">
+                                  Série: {asset.serial_number || 'N/A'}
+                              </div>
                             </th>
                             <td className="px-6 py-4">
                               {asset.item_type_name}
@@ -3633,6 +3644,17 @@ const AssetModal = ({ onClose, onSave, asset, itemTypes, units, translateStatus,
   const [acquisitionDate, setAcquisitionDate] = useState<string>(asset?.acquisition_date || new Date().toISOString().split('T')[0]);
   const [warrantyEndDate, setWarrantyEndDate] = useState<string>(asset?.warranty_end_date || '');
   const [notes, setNotes] = useState<string>(asset?.notes || '');
+  // >>> NOVOS ESTADOS PARA DADOS COMPLEMENTARES <<<
+  const [imei, setImei] = useState<string>(asset?.imei || '');
+  const [simCardNumber, setSimCardNumber] = useState<string>(asset?.sim_card_number || '');
+  const [boxNumber, setBoxNumber] = useState<string>(asset?.box_number || '');
+  const [hasLivox, setHasLivox] = useState<boolean>(asset?.has_livox || false);
+  // Reserva Técnica = Automação Desligada (Inverso)
+  const [isReserve, setIsReserve] = useState<boolean>(asset ? !asset.allow_automation : false);
+  
+  // Lógica para saber se o item selecionado é um Tablet e mostrar o bloco extra
+  const selectedItemType = itemTypes.find(t => t.id.toString() === itemTypeId);
+  const isTabletType = selectedItemType && (selectedItemType.name.toLowerCase().includes('tablet') || selectedItemType.name.toLowerCase().includes('tab'));
   const [loading, setLoading] = useState<boolean>(false);
 
   const unitsForDropdown = useMemo(() => {
@@ -3679,6 +3701,12 @@ const AssetModal = ({ onClose, onSave, asset, itemTypes, units, translateStatus,
       acquisition_date: acquisitionDate || undefined,
       warranty_end_date: warrantyEndDate || undefined,
       notes: notes || undefined,
+      // >>> NOVOS CAMPOS ENVIADOS <<<
+      imei: imei || undefined,
+      sim_card_number: simCardNumber || undefined,
+      box_number: boxNumber || undefined,
+      has_livox: hasLivox,
+      allow_automation: !isReserve // Inverte a lógica: Se é reserva, não tem automação.
     };
     await onSave(assetData, asset?.id);
     setLoading(false);
@@ -3838,6 +3866,49 @@ const AssetModal = ({ onClose, onSave, asset, itemTypes, units, translateStatus,
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             ></textarea>
           </div>
+
+          {/* >>> BLOCO DE DADOS COMPLEMENTARES (SÓ APARECE PARA TABLETS) <<< */}
+          {isTabletType && (
+              <div className="md:col-span-2 bg-orange-50 p-4 rounded-lg border border-orange-200 mt-2 space-y-4">
+                  <h3 className="font-bold text-orange-800 flex items-center mb-2 border-b border-orange-200 pb-2">
+                      <Smartphone className="w-4 h-4 mr-2"/> Dados Complementares (Logística de Tablets)
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                          <label className="block text-xs font-bold text-gray-700 mb-1">Caixa / Lote</label>
+                          <input type="text" value={boxNumber} onChange={(e) => setBoxNumber(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 text-sm" placeholder="Ex: CX 01" />
+                      </div>
+                      <div>
+                          <label className="block text-xs font-bold text-gray-700 mb-1">IMEI</label>
+                          <input type="text" value={imei} onChange={(e) => setImei(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 text-sm" placeholder="Apenas números..." />
+                      </div>
+                      <div>
+                          <label className="block text-xs font-bold text-gray-700 mb-1">Chip de Dados (Linha)</label>
+                          <InputMask mask="(99) 99999-9999" value={simCardNumber} onChange={(e) => setSimCardNumber(e.target.value)}>
+                              {(inputProps: any) => <input {...inputProps} type="text" className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 text-sm" placeholder="(81) 99999-9999" />}
+                          </InputMask>
+                      </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                          <label className="block text-xs font-bold text-gray-700 mb-1">Software LIVOX (PCD)?</label>
+                          <select value={hasLivox ? "true" : "false"} onChange={(e) => setHasLivox(e.target.value === "true")} className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white focus:ring-orange-500 text-sm font-bold text-gray-700">
+                              <option value="false">NÃO</option>
+                              <option value="true">SIM</option>
+                          </select>
+                      </div>
+                      <div>
+                          <label className="block text-xs font-bold text-gray-700 mb-1">Reserva Técnica?</label>
+                          <select value={isReserve ? "true" : "false"} onChange={(e) => setIsReserve(e.target.value === "true")} className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white focus:ring-orange-500 text-sm font-bold text-gray-700">
+                              <option value="false">NÃO</option>
+                              <option value="true">SIM</option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+          )}
 
           <div className="md:col-span-2 flex justify-end space-x-3 mt-6">
             <button
