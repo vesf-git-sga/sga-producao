@@ -12666,24 +12666,28 @@ app.get('/api/tablets/legacy/search', authenticateToken, async (req, res) => {
     }
 });
 
-// 2. Rota de Importação da Planilha (Restrita a Admin/Manager)
+// 2. Rota de Importação da Planilha (Carga Espelho - Truncate & Load)
 app.post('/api/tablets/legacy/import', authenticateToken, authorizePermission('MENU_CONFIGURACOES'), uploadImport.single('file'), async (req, res) => {
     if (!req.file) return res.status(400).json({ message: 'Arquivo não enviado.' });
 
-    const workbook = XLSX.readFile(req.file.path);
-    const data = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+    const filePath = req.file.path;
     const client = await pool.connect();
 
     try {
+        const workbook = XLSX.readFile(filePath);
+        const data = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+        
         await client.query('BEGIN');
-        console.log(`[LEGADO] Iniciando importação de ${data.length} linhas...`);
+        console.log(`[LEGADO] Limpando base antiga e iniciando importação de ${data.length} linhas...`);
+
+        // A MÁGICA: Apaga todos os registros antigos instantaneamente
+        await client.query('TRUNCATE TABLE legacy_tablet_deliveries');
 
         for (const row of data) {
-            // Mapeamento exato das colunas que você informou
             await client.query(
                 `INSERT INTO legacy_tablet_deliveries 
-                (student_registration, student_name, class_name, unit_name, equipment, delivery_status_info, delivery_year)
-                VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+                (student_registration, student_name, class_name, unit_name, equipment, delivery_status_info, delivery_year, patrimonio_number, imei, sim_card_number)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
                 [
                     String(row['MATRÍCULA'] || row['MATRICULA'] || ''),
                     String(row['NOME DO ALUNO'] || row['NOME'] || '').toUpperCase(),
@@ -12691,19 +12695,23 @@ app.post('/api/tablets/legacy/import', authenticateToken, authorizePermission('M
                     String(row['UNIDADE'] || ''),
                     String(row['EQUIPAMENTO'] || ''),
                     String(row['ENTREGA'] || ''),
-                    parseInt(row['ANO']) || null
+                    parseInt(row['ANO']) || null,
+                    // MAPEAMENTO DAS 3 NOVAS COLUNAS:
+                    String(row['TOMBAMENTO'] || row['PATRIMONIO'] || row['PATRIMÔNIO'] || ''),
+                    String(row['IMEI'] || ''),
+                    String(row['CHIP'] || row['SIMCARD'] || '')
                 ]
             );
         }
         await client.query('COMMIT');
-        res.json({ message: `Sucesso! ${data.length} registros históricos importados.` });
+        res.json({ message: `Sucesso! Base sincronizada com ${data.length} registros.` });
     } catch (error) {
         await client.query('ROLLBACK');
         console.error('Erro importação legada:', error);
         res.status(500).json({ message: 'Erro ao processar planilha de histórico.' });
     } finally {
         client.release();
-        if (fs.existsSync(req.file.path)) fs.unlinkSync(req.file.path);
+        if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
     }
 });
 

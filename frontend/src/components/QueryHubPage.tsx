@@ -441,38 +441,48 @@ const QueryHubPage: React.FC<QueryHubProps> = ({
 
              <div className="overflow-x-auto rounded-lg border border-gray-200">
                 <table className="w-full text-sm text-left">
-                    <thead className="bg-gray-100 text-gray-600 uppercase text-xs font-bold">
-                        <tr>
-                            <th className="p-3 w-20">Ano</th>
-                            <th className="p-3 w-32">Matrícula</th>
-                            <th className="p-3">Nome do Aluno</th>
-                            <th className="p-3">Turma</th>
-                            <th className="p-3">Unidade</th>
-                            <th className="p-3">Equipamento</th>
-                            <th className="p-3">Entrega</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100">
-                        {legacyResults.map((s, idx) => (
-                            <tr key={idx} className="hover:bg-orange-50 transition-colors">
-                                <td className="p-3 font-bold text-orange-700">{s.delivery_year || '-'}</td>
-                                <td className="p-3 font-mono text-gray-600">{s.student_registration || '-'}</td>
-                                <td className="p-3 font-bold text-gray-800">{s.student_name}</td>
-                                <td className="p-3 text-gray-600">{s.class_name || '-'}</td>
-                                <td className="p-3 text-gray-600">{s.unit_name || '-'}</td>
-                                <td className="p-3 text-gray-600">{s.equipment || '-'}</td>
-                                <td className="p-3">
-                                    <span className="px-2 py-1 bg-gray-200 rounded text-xs font-bold text-gray-700">
-                                        {s.delivery_status_info || '-'}
-                                    </span>
-                                </td>
+                        <thead className="bg-gray-50 text-gray-700 uppercase text-xs">
+                            <tr>
+                                <th className="px-4 py-3">Ano</th>
+                                <th className="px-4 py-3">Matrícula</th>
+                                <th className="px-4 py-3">Estudante / Turma</th>
+                                <th className="px-4 py-3">Unidade</th>
+                                <th className="px-4 py-3">Equipamento</th>
+                                <th className="px-4 py-3">Dados Técnicos</th>
+                                <th className="px-4 py-3">Ação Logística</th>
                             </tr>
-                        ))}
-                         {legacyResults.length === 0 && !loadingLegacy && (
-                            <tr><td colSpan={7} className="p-8 text-center text-gray-400">Utilize a busca para consultar os anos anteriores.</td></tr>
-                        )}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="divide-y divide-gray-100">
+                            {legacyResults.map((r, i) => (
+                                <tr key={i} className="hover:bg-orange-50 transition-colors">
+                                    <td className="px-4 py-3 font-bold text-orange-700 align-top">{r.delivery_year || '-'}</td>
+                                    <td className="px-4 py-3 font-mono text-gray-600 align-top">{r.student_registration || '-'}</td>
+                                    <td className="px-4 py-3 align-top">
+                                        <div className="font-bold text-gray-800">{r.student_name}</div>
+                                        <div className="text-xs text-gray-500 mt-1">Turma: {r.class_name || '-'}</div>
+                                    </td>
+                                    <td className="px-4 py-3 text-gray-600 align-top">{r.unit_name || '-'}</td>
+                                    <td className="px-4 py-3 text-gray-600 align-top">{r.equipment || '-'}</td>
+                                    <td className="px-4 py-3 align-top">
+                                        {r.patrimonio_number ? (
+                                            <div className="space-y-1">
+                                                <div className="text-xs font-bold text-blue-800">Tombo: {r.patrimonio_number}</div>
+                                                {r.imei && <div className="text-xs text-gray-500 font-mono">IMEI: {r.imei}</div>}
+                                                {r.sim_card_number && <div className="text-xs text-green-700 font-mono font-bold">Chip: {r.sim_card_number}</div>}
+                                            </div>
+                                        ) : (
+                                            <span className="text-xs text-gray-400 italic">Sem registro técnico</span>
+                                        )}
+                                    </td>
+                                    <td className="px-4 py-3 align-top">
+                                        <span className="px-2 py-1 bg-gray-200 rounded text-[10px] font-bold text-gray-700 inline-block">
+                                            {r.delivery_status_info || '-'}
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
              </div>
          </div>
       )}
