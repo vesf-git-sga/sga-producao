@@ -1157,7 +1157,7 @@ app.get('/api/reports/tablets/consolidated/pdf', authenticateToken, authorizePer
 });
 
 // =====================================================================
-// RELATÓRIO CONSOLIDADO DE TABLETS (XLSX) - MATEMÁTICA BLINDADA V2
+// RELATÓRIO CONSOLIDADO DE TABLETS (XLSX) - MATEMÁTICA CORRIGIDA (SEM NaN)
 // =====================================================================
 app.get('/api/reports/tablets/consolidated/xlsx', authenticateToken, authorizePermission('MENU_ESCOLAR'), async (req, res) => {
     try {
@@ -1167,20 +1167,31 @@ app.get('/api/reports/tablets/consolidated/xlsx', authenticateToken, authorizePe
                     s.school_unit_id,
                     s.id AS student_id,
                     MAX(CASE WHEN dbi.delivery_status IN ('realizada', 'confirmed') THEN 1 ELSE 0 END) as is_delivered,
-                    MAX(CASE WHEN dbi.delivery_status = 'planejada' THEN 1 ELSE 0 END) as is_planned,
-                    MAX(CASE WHEN dbi.delivery_status = 'devolvido' THEN 1 ELSE 0 END) as is_returned
+                    -- Lógica original restabelecida para Devolvidos
+                    CASE WHEN MAX(CASE WHEN dbi.delivery_status IN ('realizada', 'confirmed') THEN 1 ELSE 0 END) = 0 
+                         AND MAX(CASE WHEN dbi.delivery_status = 'devolvido' THEN 1 ELSE 0 END) = 1 
+                         THEN 1 ELSE 0 END as is_returned,
+                    MAX(CASE WHEN a.has_livox = TRUE AND dbi.delivery_status IN ('realizada', 'confirmed') THEN 1 ELSE 0 END) as has_active_livox
                 FROM tablet_eligible_students s
                 LEFT JOIN delivery_batch_items dbi ON s.id = dbi.eligible_student_id
+                LEFT JOIN assets a ON dbi.asset_id = a.id
                 GROUP BY s.id, s.school_unit_id
             )
             SELECT 
                 u.name AS school_name,
                 COALESCE(u.rpa, '-') AS rpa,
                 COUNT(ss.student_id) AS total_eligible,
-                SUM(ss.is_delivered) AS total_delivered,
-                SUM(ss.is_returned) AS total_returned,
-                SUM(ss.is_planned) AS total_planned,
-                (COUNT(ss.student_id) - SUM(ss.is_delivered) - SUM(ss.is_returned) - SUM(ss.is_planned)) AS total_pending
+                COALESCE(SUM(ss.is_delivered), 0) AS total_delivered,
+                COALESCE(SUM(ss.is_returned), 0) AS total_returned,
+                -- Lógica original restabelecida para Pendentes: Elegíveis - Entregues - Devolvidos
+                (COUNT(ss.student_id) - COALESCE(SUM(ss.is_delivered), 0) - COALESCE(SUM(ss.is_returned), 0)) AS total_pending,
+                
+                -- Blindagem contra o NaN no Livox e Reserva
+                COALESCE(SUM(ss.has_active_livox), 0) AS total_livox,
+                COALESCE((
+                    SELECT COUNT(id) FROM assets 
+                    WHERE current_unit_id = u.id AND allow_automation = FALSE AND status IN ('available', 'maintenance', 'in_use', 'loaned')
+                ), 0) AS total_reserve
             FROM units u
             JOIN StudentStatus ss ON u.id = ss.school_unit_id
             GROUP BY u.id, u.name, u.rpa
@@ -1192,12 +1203,12 @@ app.get('/api/reports/tablets/consolidated/xlsx', authenticateToken, authorizePe
         const rows = result.rows.map(r => ({
             rpa: r.rpa,
             school: r.school_name,
-            eligible: parseInt(r.total_eligible),
-            delivered: parseInt(r.total_delivered),
-            returned: parseInt(r.total_returned),
-            pending: parseInt(r.total_pending),
-            livox: parseInt(r.total_livox),
-            reserve: parseInt(r.total_reserve)
+            eligible: parseInt(r.total_eligible, 10) || 0,
+            delivered: parseInt(r.total_delivered, 10) || 0,
+            returned: parseInt(r.total_returned, 10) || 0,
+            pending: Math.max(0, parseInt(r.total_pending, 10) || 0),
+            livox: parseInt(r.total_livox, 10) || 0, // NaN resolvido
+            reserve: parseInt(r.total_reserve, 10) || 0 // NaN resolvido
         }));
 
         const columns = [
@@ -3009,8 +3020,11 @@ app.post('/api/tablets/manual-return', authenticateToken, authorizePermission('M
     try {
         await client.query('BEGIN');
 
-        // 1. Limpeza do Patrimônio (Remove caracteres especiais se necessário)
-        // Ajuste conforme seu padrão (ex: manter traços ou apenas números)
+        // >>> BUSCA O ID DO ALMOXARIFADO AQUI LOGO NO INÍCIO <<<
+        const whRes = await client.query("SELECT id FROM units WHERE name ILIKE '%Almoxarifado%' LIMIT 1");
+        const warehouseId = whRes.rows[0]?.id || null;
+
+        // 1. Limpeza do Patrimônio
         const cleanPatrimonio = String(patrimonio_number).trim();
 
         // 2. Verifica se o ativo JÁ EXISTE
@@ -3027,18 +3041,16 @@ app.post('/api/tablets/manual-return', authenticateToken, authorizePermission('M
             const asset = assetRes.rows[0];
             assetId = asset.id;
 
-            // Se já estiver "available" ou "maintenance", apenas loga, não impede a devolução (re-devolução)
-            // Se estiver "disposed", bloqueia.
             if (asset.status === 'disposed') {
                 throw new Error('Este ativo consta como DESCARTADO e não pode ser devolvido.');
             }
 
-            // Atualiza status baseado na condição informada
             const newStatus = (condition === 'Ruim' || condition === 'Defeito') ? 'maintenance' : 'available';
             
+            // >>> CORREÇÃO: Transfere para o Almoxarifado em vez de NULL <<<
             await client.query(
-                `UPDATE assets SET status = $1, current_unit_id = NULL, updated_at = NOW() WHERE id = $2`,
-                [newStatus, assetId]
+                `UPDATE assets SET status = $1, current_unit_id = $3, updated_at = NOW() WHERE id = $2`,
+                [newStatus, assetId, warehouseId]
             );
 
         } else {
@@ -3046,22 +3058,20 @@ app.post('/api/tablets/manual-return', authenticateToken, authorizePermission('M
             isLegacy = true;
             console.log(`[DEVOLUÇÃO] Ativo ${cleanPatrimonio} não encontrado. Criando registro legado.`);
 
-            // Busca o ID do tipo 'Tablet'
             const typeRes = await client.query("SELECT id, sku_code FROM item_types WHERE name ILIKE '%Tablet%' LIMIT 1");
             if (typeRes.rows.length === 0) throw new Error('Tipo "Tablet" não cadastrado no sistema.');
             const { id: typeId, sku_code } = typeRes.rows[0];
 
-            // Gera um SKU temporário ou usa o patrimônio
             const sku = `${sku_code}-LEGADO-${cleanPatrimonio}`;
 
-            // Cria o ativo
+            // >>> CORREÇÃO: Insere o tablet já dentro do Almoxarifado <<<
             const insertRes = await client.query(
                 `INSERT INTO assets (
                     patrimonio_number, serial_number, item_type_id, sku,
                     brand, model, description,
-                    status, acquisition_date, notes, created_at
+                    status, acquisition_date, notes, created_at, current_unit_id
                 ) VALUES ($1, $2, $3, $4, 'SAMSUNG/MULTILASER', 'LEGADO (Gestão Anterior)', 'Tablet recuperado via devolução manual', 
-                          $5, NOW(), $6, NOW()) 
+                          $5, NOW(), $6, NOW(), $7) 
                 RETURNING id`,
                 [
                     cleanPatrimonio, 
@@ -3069,16 +3079,14 @@ app.post('/api/tablets/manual-return', authenticateToken, authorizePermission('M
                     typeId, 
                     sku,
                     (condition === 'Ruim' || condition === 'Defeito') ? 'maintenance' : 'available',
-                    'Ativo cadastrado automaticamente no ato da devolução.'
+                    'Ativo cadastrado automaticamente no ato da devolução.',
+                    warehouseId // ID do Almoxarifado
                 ]
             );
             assetId = insertRes.rows[0].id;
         }
 
-        // 3. Registra a Movimentação (Para aparecer no Dashboard)
-        // Se foi passado o ID da escola de onde veio, usamos como 'destination_unit_id' (origem neste caso)
-        // ou deixamos null.
-        
+        // 3. Registra a Movimentação
         const moveNotes = `Devolução Avulsa/Legado. Condição: ${condition}. ${notes || ''}`;
         
         const moveRes = await client.query(
@@ -3100,14 +3108,12 @@ app.post('/api/tablets/manual-return', authenticateToken, authorizePermission('M
         );
 
         await client.query('COMMIT');
-
-        // Log de Auditoria
         await logAudit(userId, isLegacy ? 'return_legacy_created' : 'return_manual', 'asset', assetId, { patrimonio: cleanPatrimonio }, ipAddress);
 
         res.json({ 
             message: isLegacy 
-                ? 'Devolução realizada. Ativo NÃO existia e foi cadastrado como Legado.' 
-                : 'Devolução realizada com sucesso.',
+                ? 'Devolução realizada. Ativo NÃO existia e foi cadastrado como Legado no Almoxarifado.' 
+                : 'Devolução realizada com sucesso. Tablet no Almoxarifado.',
             assetId: assetId
         });
 
@@ -4447,7 +4453,7 @@ app.get('/api/delivery-batches/:id/signed-receipt', authenticateToken, async (re
 });
 
 // =====================================================================
-// CRIAR LOTE COMPLEMENTAR (COM DATA, RPA E CORREÇÃO DE LOCALIZAÇÃO V5)
+// CRIAR LOTE COMPLEMENTAR (COM DATA, RPA, LIVOX E CORREÇÃO DE LOCALIZAÇÃO V6)
 // =====================================================================
 app.post('/api/tablets/complementary-batch', authenticateToken, authorizePermission('MENU_ESCOLAR'), async (req, res) => {
   const { school_unit_id, students, scheduled_date } = req.body; 
@@ -4479,28 +4485,11 @@ app.post('/api/tablets/complementary-batch', authenticateToken, authorizePermiss
     );
     const batchId = batchRes.rows[0].id;
 
-    // 3. Buscar Tablets Disponíveis
-    const assetsRes = await client.query(`
-        SELECT a.id 
-        FROM assets a 
-        JOIN item_types it ON a.item_type_id = it.id
-        WHERE a.status = 'available' 
-        AND (it.name ILIKE 'Tablet' OR it.sku_code ILIKE 'TAB')
-        ORDER BY a.box_number ASC NULLS LAST, a.patrimonio_number ASC
-        LIMIT $1 FOR UPDATE SKIP LOCKED
-    `, [students.length]);
-
-    const availableAssets = assetsRes.rows;
-    
-    if (availableAssets.length < students.length) {
-        throw new Error(`Estoque insuficiente. Necessário: ${students.length}, Disponível: ${availableAssets.length}`);
-    }
-
-    // 4. Processar cada Aluno
+    // 3. Processar cada Aluno e Buscar o Tablet Específico (LIVOX ou PADRÃO)
     for (let i = 0; i < students.length; i++) {
         const sData = students[i];
-        const asset = availableAssets[i];
 
+        // Define se o aluno precisa de Livox
         let requires_livox = false;
         if (sData.pcd && sData.pcd.length > 2 && !['NÃO','NAO'].includes(sData.pcd.toUpperCase())) requires_livox = true;
 
@@ -4539,14 +4528,32 @@ app.post('/api/tablets/complementary-batch', authenticateToken, authorizePermiss
             throw new Error(`O aluno ${sData.name} (${sData.registration}) já possui um tablet registrado.`);
         }
 
-        // C. Associar ao Lote
+        // C. >>> A MÁGICA: Buscar Tablet EXATAMENTE para o perfil do aluno (Livox e Automação) <<<
+        const assetRes = await client.query(`
+            SELECT a.id 
+            FROM assets a 
+            JOIN item_types it ON a.item_type_id = it.id
+            WHERE a.status = 'available' 
+            AND a.has_livox = $1
+            AND a.allow_automation = TRUE
+            AND (it.name ILIKE 'Tablet' OR it.sku_code ILIKE 'TAB')
+            ORDER BY a.box_number ASC NULLS LAST, a.patrimonio_number ASC
+            LIMIT 1 FOR UPDATE SKIP LOCKED
+        `, [requires_livox]);
+
+        if (assetRes.rows.length === 0) {
+            throw new Error(`Sem estoque de tablets disponíveis para o aluno ${sData.name}. Necessário: ${requires_livox ? 'COM LIVOX (PCD)' : 'PADRÃO'}.`);
+        }
+        const asset = assetRes.rows[0];
+
+        // D. Associar ao Lote
         await client.query(
             `INSERT INTO delivery_batch_items (batch_id, eligible_student_id, asset_id, delivery_status)
              VALUES ($1, $2, $3, 'planejada')`,
             [batchId, studentId, asset.id]
         );
 
-        // D. Reservar Ativo e Mover para Escola (CORREÇÃO V5)
+        // E. Reservar Ativo e Mover para Escola
         await client.query(
             `UPDATE assets SET status = 'in_use', current_unit_id = $1, updated_at = NOW() WHERE id = $2`, 
             [school_unit_id, asset.id]
@@ -4568,7 +4575,7 @@ app.post('/api/tablets/complementary-batch', authenticateToken, authorizePermiss
 });
 
 // =====================================================================
-// ADICIONAR ALUNO MANUALMENTE A UM LOTE EXISTENTE (CORREÇÃO V5)
+// ADICIONAR ALUNO MANUALMENTE A UM LOTE EXISTENTE (LIVOX + AUTOMAÇÃO V6)
 // =====================================================================
 app.post('/api/delivery-batches/:id/add-manual-student', authenticateToken, authorizePermission('MENU_ESCOLAR'), async (req, res) => {
   const { id: batch_id } = req.params;
@@ -4644,18 +4651,22 @@ app.post('/api/delivery-batches/:id/add-manual-student', authenticateToken, auth
         throw new Error('Este aluno já possui um tablet registrado/planejado em outro lote.');
     }
 
-    // 4. Buscar Próximo Tablet Disponível
+    // 4. >>> A MÁGICA: Buscar Próximo Tablet EXATO para o perfil (LIVOX e Automação) <<<
     const assetRes = await client.query(`
         SELECT a.id, a.patrimonio_number, a.box_number 
         FROM assets a
         JOIN item_types it ON a.item_type_id = it.id
         WHERE a.status = 'available'
+        AND a.has_livox = $1
+        AND a.allow_automation = TRUE
         AND (it.name ILIKE 'Tablet' OR it.sku_code ILIKE 'TAB')
         ORDER BY a.box_number ASC NULLS LAST, a.patrimonio_number ASC
         LIMIT 1 FOR UPDATE SKIP LOCKED
-    `);
+    `, [requires_livox]);
 
-    if (assetRes.rows.length === 0) throw new Error('Sem tablets disponíveis no estoque.');
+    if (assetRes.rows.length === 0) {
+        throw new Error(`Sem tablets disponíveis no estoque (Perfil necessário: ${requires_livox ? 'LIVOX PCD' : 'PADRÃO'}).`);
+    }
     const asset = assetRes.rows[0];
 
     // 5. Associar ao Lote
@@ -4665,7 +4676,7 @@ app.post('/api/delivery-batches/:id/add-manual-student', authenticateToken, auth
         [batch_id, studentId, asset.id]
     );
 
-    // 6. Reservar Ativo e Mover para Escola (CORREÇÃO V5)
+    // 6. Reservar Ativo e Mover para Escola
     await client.query(
         `UPDATE assets SET status = 'in_use', current_unit_id = $1, updated_at = NOW() WHERE id = $2`, 
         [school_unit_id, asset.id]
@@ -6374,12 +6385,15 @@ app.delete('/api/delivery-batches/:id', authenticateToken, authorizePermission('
     if (batchRes.rows.length === 0) throw new Error('Lote não encontrado.');
     const batch = batchRes.rows[0];
 
-    // 2. Liberar os Tablets (Volta para 'available' e tira da escola)
+    // >>> 2. CORREÇÃO: Buscar Almoxarifado e Liberar os Tablets para lá <<<
+    const whRes = await client.query("SELECT id FROM units WHERE name ILIKE '%Almoxarifado%' LIMIT 1");
+    const warehouseId = whRes.rows[0]?.id || null;
+
     await client.query(`
       UPDATE assets 
-      SET status = 'available', current_unit_id = NULL
+      SET status = 'available', current_unit_id = $2, updated_at = NOW()
       WHERE id IN (SELECT asset_id FROM delivery_batch_items WHERE batch_id = $1)
-    `, [batch_id]);
+    `, [batch_id, warehouseId]);
 
     // 3. Apagar os Itens do Lote (Associações Aluno-Tablet)
     await client.query('DELETE FROM delivery_batch_items WHERE batch_id = $1', [batch_id]);
@@ -6395,7 +6409,6 @@ app.delete('/api/delivery-batches/:id', authenticateToken, authorizePermission('
   } catch (error) {
     await client.query('ROLLBACK');
     console.error('Erro ao excluir lote:', error);
-    // Evita crash se houver amarrações pesadas antigas no banco
     if (error.code === '23503') {
         return res.status(400).json({ message: 'Não é possível excluir este lote pois existem recibos ou auditorias dependentes dele.' });
     }
@@ -6702,16 +6715,16 @@ app.post('/api/delivery-batch-items/:id/return', authenticateToken, authorizePer
       [reason, item_id]
     );
 
-    // 3. Atualizar o Tablet para "Disponível" (Volta para o estoque)
-    // Nota: O sistema assume que volta para o Almoxarifado Central ou fica disponível na escola? 
-    // Geralmente volta para o estoque. Vamos deixar 'available' e current_unit null (ou almoxarifado).
+    // 3. Atualizar o Tablet para "Disponível" (Volta para o Almoxarifado)
+    const whRes = await client.query("SELECT id FROM units WHERE name ILIKE '%Almoxarifado%' LIMIT 1");
+    const warehouseId = whRes.rows[0]?.id || null;
+
     await client.query(
-        `UPDATE assets SET status = 'available' WHERE id = $1`, 
-        [asset_id]
+        `UPDATE assets SET status = 'available', current_unit_id = $1, updated_at = NOW() WHERE id = $2`, 
+        [warehouseId, asset_id]
     );
 
     // 4. Registrar Movimentação de Retorno (Histórico)
-    // Cria um registro de que o ativo voltou
     await client.query(
       `INSERT INTO asset_movements (
          movement_type, responsible_user_id, recipient_person_id, 
@@ -12552,16 +12565,34 @@ app.get('/api/analytics/tablet-projection', authenticateToken, async (req, res) 
                     FROM tablet_eligible_students s
                     LEFT JOIN delivery_batch_items dbi ON s.id = dbi.eligible_student_id
                     GROUP BY s.id, s.rpa, s.school_unit_id
+                ),
+                SchoolStatus AS (
+                    SELECT
+                        u.id AS school_unit_id,
+                        COALESCE(u.rpa, '-') AS rpa,
+                        COUNT(ss.student_id) AS total_eligible,
+                        SUM(ss.is_delivered) AS total_delivered,
+                        SUM(ss.is_returned) AS total_returned,
+                        SUM(ss.is_planned) AS total_planned,
+                        -- >>> A MÁGICA DA CORREÇÃO <<<
+                        -- No Painel Executivo, quem está "Planejado (No Lote)" AINDA É FILA/PENDENTE!
+                        -- Só abatemos quem recebeu (delivered) ou quem não precisa mais (returned).
+                        (COUNT(ss.student_id) - SUM(ss.is_delivered) - SUM(ss.is_returned)) AS total_pending
+                    FROM units u
+                    JOIN StudentStatus ss ON u.id = ss.school_unit_id
+                    GROUP BY u.id, u.rpa
                 )
                 SELECT 
-                    COALESCE(rpa, 'Indefinido') as rpa, 
-                    COUNT(student_id) as total,
-                    COALESCE(SUM(is_delivered), 0) as delivered,
-                    COALESCE(SUM(is_returned), 0) as returned,
-                    COALESCE(SUM(is_planned), 0) as planned,
-                    COUNT(DISTINCT school_unit_id) as total_schools,
-                    COUNT(DISTINCT CASE WHEN is_delivered > 0 THEN school_unit_id END) as served_schools
-                FROM StudentStatus
+                    rpa,
+                    SUM(total_eligible) as total,
+                    SUM(total_delivered) as delivered,
+                    SUM(total_returned) as returned,
+                    SUM(total_planned) as planned,
+                    SUM(total_pending) as pending,
+                    COUNT(school_unit_id) as total_schools,
+                    -- A escola só é "Atendida" se não houver mais fila (pending <= 0)
+                    COUNT(CASE WHEN total_pending <= 0 THEN 1 END) as served_schools
+                FROM SchoolStatus
                 GROUP BY rpa 
                 ORDER BY rpa ASC
             `);
@@ -12569,16 +12600,13 @@ app.get('/api/analytics/tablet-projection', authenticateToken, async (req, res) 
             const rpaData = rpaRes.rows.map(r => {
                 const total = parseInt(r.total, 10) || 0;
                 const entregues = parseInt(r.delivered, 10) || 0;
-                const devolvidos = parseInt(r.returned, 10) || 0;
-                const planejados = parseInt(r.planned, 10) || 0;
-                
-                // Zera as pendências ignorando as devoluções
-                const pendentes = Math.max(0, total - entregues - devolvidos - planejados);
+                const pendentes = parseInt(r.pending, 10) || 0;
 
                 return {
-                    name: r.rpa === 'Indefinido' ? 'Sem RPA' : (String(r.rpa).toUpperCase().includes('RPA') ? r.rpa : `RPA ${r.rpa}`),
+                    name: r.rpa === '-' ? 'Sem RPA' : (String(r.rpa).toUpperCase().includes('RPA') ? r.rpa : `RPA ${r.rpa}`),
                     entregues: entregues,
-                    pendentes: pendentes,
+                    // O Front-end lê 'pendentes' para desenhar a Fila
+                    pendentes: Math.max(0, pendentes),
                     total: total,
                     escolas_atendidas: parseInt(r.served_schools, 10) || 0,
                     escolas_total: parseInt(r.total_schools, 10) || 0
@@ -12606,6 +12634,76 @@ app.get('/api/analytics/tablet-projection', authenticateToken, async (req, res) 
     } catch (error) {
         console.error('Erro na projeção:', error);
         res.status(500).json({ message: 'Erro ao calcular projeção.' });
+    }
+});
+
+// =====================================================================
+// MÓDULO HISTÓRICO LEGADO (ANOS ANTERIORES - 75k Linhas)
+// =====================================================================
+
+// 1. Rota de Busca no Histórico (Otimizada com LIMIT para não travar o navegador)
+app.get('/api/tablets/legacy/search', authenticateToken, async (req, res) => {
+    const { q } = req.query; 
+
+    if (!q || String(q).length < 3) return res.json([]);
+
+    try {
+        const searchTerm = `%${q}%`;
+        // Busca por Matrícula, Nome ou Unidade
+        const query = `
+            SELECT * FROM legacy_tablet_deliveries
+            WHERE student_registration ILIKE $1 
+               OR student_name ILIKE $1
+               OR unit_name ILIKE $1
+            ORDER BY delivery_year DESC, student_name ASC
+            LIMIT 100
+        `;
+        const result = await pool.query(query, [searchTerm]);
+        res.json(result.rows);
+    } catch (error) {
+        console.error('Erro na busca legada:', error);
+        res.status(500).json({ message: 'Erro ao consultar histórico anterior.' });
+    }
+});
+
+// 2. Rota de Importação da Planilha (Restrita a Admin/Manager)
+app.post('/api/tablets/legacy/import', authenticateToken, authorizePermission('MENU_CONFIGURACOES'), uploadImport.single('file'), async (req, res) => {
+    if (!req.file) return res.status(400).json({ message: 'Arquivo não enviado.' });
+
+    const workbook = XLSX.readFile(req.file.path);
+    const data = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+    const client = await pool.connect();
+
+    try {
+        await client.query('BEGIN');
+        console.log(`[LEGADO] Iniciando importação de ${data.length} linhas...`);
+
+        for (const row of data) {
+            // Mapeamento exato das colunas que você informou
+            await client.query(
+                `INSERT INTO legacy_tablet_deliveries 
+                (student_registration, student_name, class_name, unit_name, equipment, delivery_status_info, delivery_year)
+                VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+                [
+                    String(row['MATRÍCULA'] || row['MATRICULA'] || ''),
+                    String(row['NOME DO ALUNO'] || row['NOME'] || '').toUpperCase(),
+                    String(row['TURMA'] || ''),
+                    String(row['UNIDADE'] || ''),
+                    String(row['EQUIPAMENTO'] || ''),
+                    String(row['ENTREGA'] || ''),
+                    parseInt(row['ANO']) || null
+                ]
+            );
+        }
+        await client.query('COMMIT');
+        res.json({ message: `Sucesso! ${data.length} registros históricos importados.` });
+    } catch (error) {
+        await client.query('ROLLBACK');
+        console.error('Erro importação legada:', error);
+        res.status(500).json({ message: 'Erro ao processar planilha de histórico.' });
+    } finally {
+        client.release();
+        if (fs.existsSync(req.file.path)) fs.unlinkSync(req.file.path);
     }
 });
 

@@ -3084,19 +3084,28 @@ const MovementModal = ({ onClose, onSave, assets: allAssets, people, units, hand
   const { API_URL } = useContext(AuthContext) as AuthContextType;
   const { addToast } = useToast();
 
-  // --- LÓGICA DE EXIBIÇÃO CONDICIONAL ---
+  // >>> NOVO ESTADO: Trava do Monitor <<<
+  const [enforceMonitorLink, setEnforceMonitorLink] = useState<boolean>(true);
+
+  // --- LÓGICA DE EXIBIÇÃO CONDICIONAL E MATEMÁTICA ---
   const showPeripheralsSection = selectedAssets.some(asset => {
     const type = asset.item_type_name ? asset.item_type_name.toLowerCase() : '';
     return type.includes('notebook') || type.includes('desktop') || type.includes('computador');
   });
 
-  const needsMonitor = selectedAssets.some(asset => {
+  // >>> MATEMÁTICA DE PROPORÇÃO 1:1 <<<
+  const desktopsCount = selectedAssets.filter(asset => {
       const type = asset.item_type_name ? asset.item_type_name.toLowerCase() : '';
-      return (type.includes('desktop') || type.includes('computador'));
-  }) && !selectedAssets.some(asset => {
+      return type.includes('desktop') || type.includes('computador');
+  }).length;
+
+  const monitorsCount = selectedAssets.filter(asset => {
       const type = asset.item_type_name ? asset.item_type_name.toLowerCase() : '';
       return type.includes('monitor');
-  });
+  }).length;
+
+  const missingMonitorsCount = desktopsCount - monitorsCount;
+  const needsMonitor = (missingMonitorsCount > 0) && enforceMonitorLink;
 
   const isTabletType = (typeName: string) => {
       const t = typeName.toLowerCase();
@@ -3124,11 +3133,10 @@ const MovementModal = ({ onClose, onSave, assets: allAssets, people, units, hand
     if (!selectedPerson && (movementType === 'exit' || movementType === 'loan')) { addToast('Selecione um solicitante.', 'warning'); return; }
     if (!selectedUnit && (movementType === 'exit' || movementType === 'loan' || movementType === 'maintenance')) { addToast('Selecione o destino.', 'warning'); return; }
     
-    // Validação Desktop
-    const hasDesktop = selectedAssets.some(asset => asset.item_type_name.toLowerCase().includes('desktop'));
-    const hasMonitor = selectedAssets.some(asset => asset.item_type_name.toLowerCase().includes('monitor'));
-    if (hasDesktop && !hasMonitor) {
-      if (!window.confirm("ATENÇÃO: Desktop sem Monitor. Continuar?")) return;
+    // Validação Desktop (Proporção 1 para 1)
+    if (desktopsCount > monitorsCount && enforceMonitorLink) {
+        addToast(`Atenção: Faltam ${missingMonitorsCount} monitor(es) para os desktops selecionados.`, 'warning');
+        return; // Impede de avançar
     }
 
     // Validação Tablet (Chip)
@@ -3413,7 +3421,18 @@ const MovementModal = ({ onClose, onSave, assets: allAssets, people, units, hand
               </div>
 
               {/* Tabela de Itens Selecionados (MANTIDA IGUAL AO ORIGINAL) */}
-              <div className="overflow-x-auto border rounded-lg mt-4 bg-gray-50">
+              {/* Tabela de Itens Selecionados COM CONTADOR */}
+              <div className="flex justify-between items-end mt-6 mb-2 px-1">
+                  <h4 className="font-bold text-gray-800 flex items-center text-sm uppercase tracking-wide">
+                      <HardDrive className="w-4 h-4 mr-2 text-blue-600"/>
+                      Equipamentos na Lista
+                  </h4>
+                  <div className="bg-blue-100 text-blue-800 px-4 py-1.5 rounded-full text-xs font-extrabold shadow-sm border border-blue-200 flex items-center">
+                      TOTAL: <span className="text-lg ml-2">{selectedAssets.length}</span>
+                  </div>
+              </div>
+              
+              <div className="overflow-x-auto border rounded-lg bg-gray-50">
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-100">
                       <tr>
@@ -3460,13 +3479,43 @@ const MovementModal = ({ onClose, onSave, assets: allAssets, people, units, hand
               </div>
             </div>
 
-            {needsMonitor && (
-              <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg animate-fadeIn">
-                <h4 className="font-bold text-yellow-800 flex items-center mb-2"> <AlertTriangleIcon className="w-4 h-4 mr-2"/> Atenção: Desktop sem Monitor </h4>
-                <div className="flex gap-2">
-                  <input type="text" value={monitorSearchTerm} onChange={e => setMonitorSearchTerm(e.target.value)} placeholder="Patrimônio do Monitor..." className="flex-grow px-3 py-2 border rounded-md text-sm" />
-                  <button type="button" onClick={handleLinkMonitor} disabled={monitorSearchLoading} className="bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-bold hover:bg-yellow-700 disabled:opacity-50"> {monitorSearchLoading ? '...' : 'Vincular'} </button>
+            {/* LÓGICA DE MONITORES COM PROPORÇÃO 1:1 E CHECKBOX */}
+            {desktopsCount > 0 && (
+              <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg animate-fadeIn mb-4">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-3 border-b border-yellow-200 pb-2 gap-2">
+                    <h4 className="font-bold text-yellow-800 flex items-center">
+                        <AlertTriangleIcon className="w-4 h-4 mr-2"/> 
+                        Vinculação de Monitores ({monitorsCount}/{desktopsCount})
+                    </h4>
+                    <label className="flex items-center space-x-2 cursor-pointer text-sm text-yellow-800 font-medium bg-yellow-100 p-2 rounded hover:bg-yellow-200 transition-colors">
+                        <input
+                            type="checkbox"
+                            checked={enforceMonitorLink}
+                            onChange={(e) => setEnforceMonitorLink(e.target.checked)}
+                            className="rounded text-yellow-600 focus:ring-yellow-500 w-4 h-4 cursor-pointer"
+                        />
+                        <span>Exigir monitor para cada desktop</span>
+                    </label>
                 </div>
+
+                {needsMonitor ? (
+                    <>
+                        <p className="text-xs text-yellow-700 mb-2 font-bold animate-pulse">
+                            Faltam {missingMonitorsCount} monitor(es) para fechar os conjuntos.
+                        </p>
+                        <div className="flex gap-2">
+                            <input type="text" value={monitorSearchTerm} onChange={e => setMonitorSearchTerm(e.target.value)} onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), handleLinkMonitor())} placeholder="Bipe ou digite o patrimônio do Monitor..." className="flex-grow px-3 py-2 border border-yellow-300 rounded-md text-sm focus:ring-2 focus:ring-yellow-500 outline-none" />
+                            <button type="button" onClick={handleLinkMonitor} disabled={monitorSearchLoading} className="bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-bold hover:bg-yellow-700 disabled:opacity-50 transition-colors"> 
+                                {monitorSearchLoading ? '...' : 'Vincular Monitor'} 
+                            </button>
+                        </div>
+                    </>
+                ) : (
+                    <p className="text-xs text-green-700 font-bold flex items-center mt-2 bg-green-50 p-2 rounded border border-green-200">
+                        <CheckCircle className="w-4 h-4 mr-2" />
+                        {enforceMonitorLink ? 'Todos os desktops possuem monitores vinculados!' : 'Vinculação obrigatória desativada pelo operador.'}
+                    </p>
+                )}
               </div>
             )}
 
@@ -7230,8 +7279,8 @@ const TabletDeliveryPage: React.FC<TabletDeliveryPageProps> = ({ API_URL, units,
                     triggerRefresh();
                     fetchActiveSchools(); // Atualiza a lista caso a transferência mude contagens
                 }}
-                // >>> AQUI ESTÁ A MUDANÇA: Usamos activeSchools em vez de units <<<
-                schools={activeSchools} 
+                // >>> CORREÇÃO: Voltamos a usar schoolUnits para que TODAS as escolas apareçam no destino <<<
+                schools={schoolUnits} 
             />
           )}
 

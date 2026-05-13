@@ -4,7 +4,7 @@ import {
   Search, Calendar, Filter, FileText, Download, Smartphone, 
   Cpu, User, MapPin, List, History as HistoryIcon, GraduationCap, 
   FileCheck, BarChart, ArrowLeft, PackageCheck, ChevronDown, ChevronRight, 
-  AlertCircle, CheckCircle2, Paperclip, Printer, HardDrive, UserCircle
+  AlertCircle, CheckCircle2, Paperclip, Printer, HardDrive, UserCircle, UploadCloud
 } from 'lucide-react';
 import { useToast } from '../App'; 
 
@@ -50,9 +50,14 @@ const QueryHubPage: React.FC<QueryHubProps> = ({
     onRenewClick, onSubstituteClick, onReturnClick, userRole, handleGenerateMovementReceipt 
 }) => {
   
-  // Controle de Abas
-  const [activeTab, setActiveTab] = useState<'movements' | 'assets' | 'people' | 'units' | 'students' | 'batch_receipts'>('students');
+  // Controle de Abas (Adicionado 'legacy')
+  const [activeTab, setActiveTab] = useState<'movements' | 'assets' | 'people' | 'units' | 'students' | 'batch_receipts' | 'legacy'>('students');
   const { addToast } = useToast();
+
+  // --- ESTADOS DE FILTRO (LEGADO) ---
+  const [legacySearch, setLegacySearch] = useState('');
+  const [legacyResults, setLegacyResults] = useState<any[]>([]);
+  const [loadingLegacy, setLoadingLegacy] = useState(false);
 
   // --- ESTADOS DE FILTRO (MOVIMENTAÇÕES) ---
   const [movFilters, setMovFilters] = useState({ startDate: '', endDate: '', movementType: '', patrimonio: '', imei: '', chip: '', solicitante: '' });
@@ -222,6 +227,34 @@ const QueryHubPage: React.FC<QueryHubProps> = ({
       }
   };
 
+  // 6. HISTÓRICO LEGADO (PLANILHA)
+  const handleSearchLegacy = async (e?: React.FormEvent) => {
+      if(e) e.preventDefault();
+      if(legacySearch.length < 3) { addToast('Digite pelo menos 3 caracteres.', 'warning'); return; }
+      
+      setLoadingLegacy(true);
+      try {
+          const response = await axios.get(`${API_URL}/tablets/legacy/search?q=${legacySearch}`);
+          setLegacyResults(response.data);
+          if (response.data.length === 0) addToast('Nenhum registro encontrado no histórico legado.', 'info');
+      } catch (error) {
+          console.error(error);
+          addToast('Erro ao buscar no histórico.', 'error');
+      } finally { setLoadingLegacy(false); }
+  };
+
+  const handleImportLegacy = async (file: File) => {
+      const formData = new FormData();
+      formData.append('file', file);
+      addToast('Importando histórico... O sistema pode parecer travado, aguarde o fim do processo.', 'info');
+      try {
+          const res = await axios.post(`${API_URL}/tablets/legacy/import`, formData);
+          addToast(res.data.message, 'success');
+      } catch (error: any) {
+          addToast(error.response?.data?.message || 'Erro na importação.', 'error');
+      }
+  };
+
   const toggleRow = (itemType: string) => {
       const newSet = new Set(expandedRows);
       if (newSet.has(itemType)) newSet.delete(itemType);
@@ -252,6 +285,10 @@ const QueryHubPage: React.FC<QueryHubProps> = ({
       <div className="flex gap-2 overflow-x-auto">
           <button onClick={() => setActiveTab('students')} className={`px-4 py-2 rounded-t-lg font-bold text-sm flex items-center transition-colors ${activeTab === 'students' ? 'bg-white border-t-2 border-blue-600 text-blue-700 shadow-sm' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}>
             <GraduationCap className="w-4 h-4 mr-2"/> Alunos (Dossiê)
+          </button>
+
+          <button onClick={() => setActiveTab('legacy')} className={`px-4 py-2 rounded-t-lg font-bold text-sm flex items-center transition-colors ${activeTab === 'legacy' ? 'bg-white border-t-2 border-orange-600 text-orange-700 shadow-sm' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}>
+            <HistoryIcon className="w-4 h-4 mr-2"/> Histórico (Anos Anteriores)
           </button>
           
           <button onClick={() => setActiveTab('batch_receipts')} className={`px-4 py-2 rounded-t-lg font-bold text-sm flex items-center transition-colors ${activeTab === 'batch_receipts' ? 'bg-white border-t-2 border-blue-600 text-blue-700 shadow-sm' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}>
@@ -358,6 +395,81 @@ const QueryHubPage: React.FC<QueryHubProps> = ({
                         ))}
                          {studentResults.length === 0 && !loadingStudent && (
                             <tr><td colSpan={4} className="p-8 text-center text-gray-400">Utilize a busca acima para encontrar o dossiê.</td></tr>
+                        )}
+                    </tbody>
+                </table>
+             </div>
+         </div>
+      )}
+
+      {/* ================================================================================= */}
+      {/* ABA: HISTÓRICO LEGADO (ANOS ANTERIORES) */}
+      {/* ================================================================================= */}
+      {activeTab === 'legacy' && (
+         <div className="bg-white p-6 rounded-b-xl rounded-tr-xl shadow-sm border border-gray-200 border-t-0">
+             
+             {/* Área de Importação (Apenas Admin/Manager) */}
+             {(userRole === 'admin' || userRole === 'manager') && (
+                 <div className="mb-6 flex justify-end">
+                     <input 
+                         type="file" id="legacyFile" className="hidden" accept=".xlsx,.csv"
+                         onChange={(e) => e.target.files && handleImportLegacy(e.target.files[0])}
+                     />
+                     <label htmlFor="legacyFile" className="bg-green-600 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-green-700 flex items-center text-sm font-bold shadow-sm transition-colors">
+                         <UploadCloud className="w-4 h-4 mr-2"/> Carregar Planilha de Histórico
+                     </label>
+                 </div>
+             )}
+
+             <form onSubmit={handleSearchLegacy} className="flex gap-4 mb-6 bg-orange-50 p-4 rounded-lg border border-orange-100">
+                 <div className="flex-1">
+                    <label className="block text-xs font-bold text-orange-800 uppercase mb-1">Buscar no Histórico Legado</label>
+                    <input 
+                        type="text" 
+                        placeholder="Matrícula, Nome do Aluno ou Unidade..." 
+                        value={legacySearch}
+                        onChange={e => setLegacySearch(e.target.value)}
+                        className="w-full p-2 border rounded border-orange-300 focus:ring-2 focus:ring-orange-500 outline-none"
+                    />
+                 </div>
+                 <div className="flex items-end">
+                    <button onClick={() => handleSearchLegacy()} disabled={loadingLegacy} className="bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700 h-[42px] font-bold shadow disabled:opacity-50">
+                        {loadingLegacy ? 'Buscando...' : 'Pesquisar Legado'}
+                    </button>
+                 </div>
+             </form>
+
+             <div className="overflow-x-auto rounded-lg border border-gray-200">
+                <table className="w-full text-sm text-left">
+                    <thead className="bg-gray-100 text-gray-600 uppercase text-xs font-bold">
+                        <tr>
+                            <th className="p-3 w-20">Ano</th>
+                            <th className="p-3 w-32">Matrícula</th>
+                            <th className="p-3">Nome do Aluno</th>
+                            <th className="p-3">Turma</th>
+                            <th className="p-3">Unidade</th>
+                            <th className="p-3">Equipamento</th>
+                            <th className="p-3">Entrega</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                        {legacyResults.map((s, idx) => (
+                            <tr key={idx} className="hover:bg-orange-50 transition-colors">
+                                <td className="p-3 font-bold text-orange-700">{s.delivery_year || '-'}</td>
+                                <td className="p-3 font-mono text-gray-600">{s.student_registration || '-'}</td>
+                                <td className="p-3 font-bold text-gray-800">{s.student_name}</td>
+                                <td className="p-3 text-gray-600">{s.class_name || '-'}</td>
+                                <td className="p-3 text-gray-600">{s.unit_name || '-'}</td>
+                                <td className="p-3 text-gray-600">{s.equipment || '-'}</td>
+                                <td className="p-3">
+                                    <span className="px-2 py-1 bg-gray-200 rounded text-xs font-bold text-gray-700">
+                                        {s.delivery_status_info || '-'}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                         {legacyResults.length === 0 && !loadingLegacy && (
+                            <tr><td colSpan={7} className="p-8 text-center text-gray-400">Utilize a busca para consultar os anos anteriores.</td></tr>
                         )}
                     </tbody>
                 </table>

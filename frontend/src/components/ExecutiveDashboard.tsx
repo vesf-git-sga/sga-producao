@@ -92,7 +92,14 @@ export default function ExecutiveDashboard({ API_URL }: { API_URL: string }) {
     // Cria um novo array calculando a porcentagem exata para o gráfico de RPA
     const rpaDataWithPercent = (data.rpaData || []).map(item => {
         const totalAlvos = item.entregues + item.pendentes; // Ignorando os devolvidos para o gráfico
-        const perc = totalAlvos > 0 ? Math.round((item.entregues / totalAlvos) * 100) : 0;
+        let perc = totalAlvos > 0 ? Math.round((item.entregues / totalAlvos) * 100) : 0;
+        
+        // >>> A CORREÇÃO (TRAVA DE AUDITORIA) <<<
+        // Se o arredondamento bater 100%, mas ainda existir qualquer pendência (por menor que seja),
+        // nós forçamos o valor para 99%. O 100% é exclusivo para quando a fila é rigorosamente ZERO.
+        if (item.pendentes > 0 && perc >= 100) {
+            perc = 99;
+        }
         
         return {
             ...item,
