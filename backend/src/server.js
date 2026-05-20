@@ -516,7 +516,7 @@ app.post('/api/auth/login', async (req, res) => {
       must_change_password: user.must_change_password,
     };
     
-    const token = jwt.sign(tokenPayload, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(tokenPayload, JWT_SECRET, { expiresIn: '8h' });
 
     await logAudit(user.id, 'login_success', 'user', user.id, { email }, ipAddress);
 
@@ -1723,7 +1723,7 @@ app.post('/api/users/me/change-password', authenticateToken, async (req, res) =>
       full_name: user.full_name,
       must_change_password: false, // <-- A informação atualizada
     };
-    const newToken = jwt.sign(newPayload, JWT_SECRET, { expiresIn: '1h' });
+    const newToken = jwt.sign(newPayload, JWT_SECRET, { expiresIn: '8h' });
 
     await logAudit(userId, 'password_change_success', 'user', userId, null, req.ip);
     
