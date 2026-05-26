@@ -5167,9 +5167,9 @@ app.get('/api/reports/delivery-batch/:id/collective', authenticateToken, async (
   try {
     // 1. Buscar Cabeçalho do Lote
     const batchRes = await pool.query(`
-      SELECT db.name, u.name as school_name, db.status, db.creation_date 
-      FROM delivery_batches db 
-      JOIN units u ON db.school_unit_id = u.id 
+      SELECT db.name, u.name as school_name, db.status, db.creation_date, db.rpa
+      FROM delivery_batches db
+      JOIN units u ON db.school_unit_id = u.id
       WHERE db.id = $1`, [batch_id]);
     
     if (batchRes.rows.length === 0) return res.status(404).json({ message: 'Lote não encontrado.' });
@@ -5262,9 +5262,21 @@ app.get('/api/reports/delivery-batch/:id/collective', authenticateToken, async (
       // --- CONTEÚDO ---
       content: [
         // ========== PÁGINA 1: RECIBO ==========
-        { text: 'RECIBO DE ENTREGA DE BENS', style: 'title', alignment: 'center', margin: [0, 0, 0, 20] },
-        
-        { 
+        { text: 'RECIBO DE ENTREGA DE BENS', style: 'title', alignment: 'center', margin: [0, 0, 0, 10] },
+
+        {
+            table: {
+                widths: ['*', 'auto', 'auto'],
+                body: [[
+                    { text: [{ text: 'Escola: ', bold: true }, batch.school_name], fontSize: 9, border: [false, false, false, false] },
+                    { text: [{ text: 'RPA: ', bold: true }, batch.rpa ? String(batch.rpa) : 'N/A'], fontSize: 9, border: [false, false, false, false], alignment: 'center' },
+                    { text: [{ text: 'Data: ', bold: true }, new Date().toLocaleDateString('pt-BR')], fontSize: 9, border: [false, false, false, false], alignment: 'right' }
+                ]]
+            },
+            margin: [0, 0, 0, 10]
+        },
+
+        {
             text: [
                 'Estamos entregando por meio da GIT/DIT – Gerência de Infraestrutura de Tecnologia / Divisão de Infraestrutura em Tecnologia, o(s) equipamento(s) especificado(s) abaixo, para distribuição aos alunos elegíveis ao recebimento de Tablets da unidade ',
                 { text: batch.school_name, bold: true, decoration: 'underline' },
