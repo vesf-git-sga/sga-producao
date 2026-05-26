@@ -5138,8 +5138,9 @@ app.get('/api/delivery-batches/:id/items', authenticateToken, authorizePermissio
         s.student_registration, 
         s.pcd_type,           -- CAMPO NOVO: Tipo de Deficiência
         s.requires_livox,     -- CAMPO NOVO: Se precisa do software
-        a.patrimonio_number, 
-        a.box_number, 
+        a.patrimonio_number,
+        a.serial_number,
+        a.box_number,
         a.has_livox,          -- CAMPO NOVO: Se o tablet tem o software
         dbi.delivery_status
       FROM delivery_batch_items dbi

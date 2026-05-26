@@ -6716,7 +6716,8 @@ const TabletDeliveryPage: React.FC<TabletDeliveryPageProps> = ({ API_URL, units,
                               <th className="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider w-32">Matrícula</th>
                               <th className="px-6 py-4 text-center text-xs font-bold text-gray-500 uppercase tracking-wider w-24 bg-orange-50 text-orange-700 border-b-2 border-orange-200">Caixa</th>
                               <th className="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider w-1/4">Tablet</th>
-                              
+                              <th className="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider w-40">Nº Série</th>
+
                               {/* NOVA COLUNA LIVOX */}
                               <th className="px-3 py-4 text-center text-xs font-bold text-gray-500 uppercase tracking-wider w-24">Livox</th>
                               
@@ -6754,6 +6755,8 @@ const TabletDeliveryPage: React.FC<TabletDeliveryPageProps> = ({ API_URL, units,
                                   </td>
                                   
                                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">{item.patrimonio_number}</td>
+
+                                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-mono">{item.serial_number || '-'}</td>
 
                                   {/* LÓGICA VISUAL DA COLUNA LIVOX (O SEMÁFORO) */}
                                   <td className="px-3 py-4 whitespace-nowrap text-center">
