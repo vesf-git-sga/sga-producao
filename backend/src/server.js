@@ -7022,11 +7022,14 @@ app.get('/api/tablets/schools-with-students', authenticateToken, async (req, res
       SELECT 
         u.id, u.name, u.rpa,
         COUNT(DISTINCT s.id) as total_eligible,
-        -- PENDENTES REAIS: Total - (Entregues + Planejados + Devolvidos)
         (
-          COUNT(DISTINCT s.id) - 
+          COUNT(DISTINCT s.id) -
           COUNT(DISTINCT CASE WHEN dbi.delivery_status IN ('realizada', 'confirmed', 'planejada', 'devolvido') THEN s.id END)
-        ) as pending_count
+        ) as pending_count,
+        (
+          COUNT(DISTINCT CASE WHEN s.requires_livox = true THEN s.id END) -
+          COUNT(DISTINCT CASE WHEN s.requires_livox = true AND dbi.delivery_status IN ('realizada', 'confirmed', 'planejada', 'devolvido') THEN s.id END)
+        ) as pending_livox_count
       FROM units u
       JOIN tablet_eligible_students s ON s.school_unit_id = u.id
       LEFT JOIN delivery_batch_items dbi ON s.id = dbi.eligible_student_id

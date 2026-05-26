@@ -7266,10 +7266,14 @@ const TabletDeliveryPage: React.FC<TabletDeliveryPageProps> = ({ API_URL, units,
                                         const pendentes = u.pending_count !== undefined 
                                             ? u.pending_count 
                                             : (u.total_eligible || u.student_count || 0) - (u.delivered_count || 0) - (u.planned_count || 0);
-                                            
+                                        
+                                        const livox = u.pending_livox_count || 0;
+
                                         return {
                                             value: u.id.toString(), 
-                                            label: `${u.name} (${pendentes} alunos pendentes)`, 
+                                            label: livox > 0
+                                                ? `${u.name} (${pendentes} tablets / ${livox} com Livox)`
+                                                : `${u.name} (${pendentes} tablets)`, 
                                             status: u.last_batch_status,
                                             batchId: u.last_batch_id
                                         };
@@ -7297,9 +7301,14 @@ const TabletDeliveryPage: React.FC<TabletDeliveryPageProps> = ({ API_URL, units,
                                         const pendentes = u.pending_count !== undefined 
                                             ? u.pending_count 
                                             : (u.total_eligible || u.student_count || 0) - (u.delivered_count || 0) - (u.planned_count || 0);
+                                        
+                                        const livox = u.pending_livox_count || 0;
+
                                         return {
                                             value: u.id.toString(), 
-                                            label: `${u.name} (${pendentes} alunos pendentes)` 
+                                            label: livox > 0
+                                                ? `${u.name} (${pendentes} tablets / ${livox} com Livox)`
+                                                : `${u.name} (${pendentes} tablets)`, 
                                         };
                                     }).find(o => o.value === selectedSchoolId) || null}
                                     isSearchable
