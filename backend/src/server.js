@@ -5275,6 +5275,17 @@ app.get('/api/reports/delivery-batch/:id/collective', authenticateToken, async (
             margin: [0, 0, 0, 10]
         },
 
+        {
+            text: [
+                'Estamos entregando por meio da GIT/DIT – Gerência de Infraestrutura de Tecnologia / Divisão de Infraestrutura em Tecnologia, o(s) equipamento(s) especificado(s) abaixo, para distribuição aos alunos elegíveis ao recebimento de Tablets da unidade ',
+                { text: batch.school_name, bold: true, decoration: 'underline' },
+                '.'
+            ],
+            style: 'body',
+            alignment: 'justify',
+            margin: [0, 0, 0, 10]
+        },
+
         // Tabela de Equipamentos
         {
             table: {
