@@ -430,7 +430,12 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { addToast } = useToast();
 
   // Tenta ler do .env, se não achar, usa o host atual de forma 100% dinâmica na porta 5000
-  const API_URL = process.env.REACT_APP_API_URL || `http://${window.location.hostname}:5000/api`;
+  let API_URL = process.env.REACT_APP_API_URL || `http://${window.location.hostname}:5000/api`;
+  // Garante que a URL termine exatamente com '/api' para evitar 404 nos endpoints
+  API_URL = API_URL.replace(/\/$/, ''); // Remove barra no final se houver
+  if (!API_URL.endsWith('/api')) {
+    API_URL = `${API_URL}/api`;
+  }
 
   useEffect(() => {
     const verifyToken = async () => {
