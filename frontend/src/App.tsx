@@ -429,8 +429,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const { addToast } = useToast();
 
-  // Tenta ler do .env, se não achar, usa o IP fixo da VM
-  const API_URL = process.env.REACT_APP_API_URL || 'http://100.67.80.80:5000/api';
+  // Tenta ler do .env, se não achar, usa o host atual de forma 100% dinâmica na porta 5000
+  const API_URL = process.env.REACT_APP_API_URL || `http://${window.location.hostname}:5000/api`;
 
   useEffect(() => {
     const verifyToken = async () => {
