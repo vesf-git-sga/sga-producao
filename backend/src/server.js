@@ -3462,7 +3462,8 @@ app.get('/api/assets', authenticateToken, async (req, res) => {
         LEFT JOIN people p ON am.recipient_person_id = p.id
         LEFT JOIN units u ON am.destination_unit_id = u.id
         WHERE a.status = $1
-        ORDER BY p.full_name, a.patrimonio_number;
+        ORDER BY p.full_name, a.patrimonio_number
+        LIMIT 500;
       `;
       params.push(status);
     } else {
@@ -3479,8 +3480,10 @@ app.get('/api/assets', authenticateToken, async (req, res) => {
       if (status) {
         params.push(status);
         query += ` WHERE a.status = $1`;
+        query += ` ORDER BY a.patrimonio_number ASC LIMIT 500`;
+      } else {
+        query += ` ORDER BY a.patrimonio_number ASC LIMIT 500`;
       }
-      query += ` ORDER BY a.patrimonio_number ASC`;
     }
 
     const result = await pool.query(query, params);
@@ -3549,13 +3552,12 @@ app.get('/api/assets/search', authenticateToken, async (req, res) => {
             FROM assets a
             JOIN item_types it ON a.item_type_id = it.id
             LEFT JOIN units u ON a.current_unit_id = u.id
-            WHERE 
+            WHERE 
                 a.patrimonio_number ILIKE $1 OR
                 a.serial_number ILIKE $1 OR
-                (a.brand || ' ' || a.model) ILIKE $1 OR
-                a.imei ILIKE $1 OR
-                a.sim_card_number ILIKE $1
-            LIMIT 20
+                a.brand ILIKE $1 OR
+                a.model ILIKE $1
+            LIMIT 15
         `, [searchTerm]);
 
         res.json(result.rows);
